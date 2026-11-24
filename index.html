@@ -468,6 +468,7 @@
       padding: 5px 12px;
       border-radius: 999px;
       border: 1px solid rgba(184, 93, 59, 0.22);
+      text-decoration: none;
     }
 
     /* Band 2: Couple Aisle Caption */
@@ -546,16 +547,153 @@
       font-size: clamp(1.35rem, 6vw, 1.85rem);
     }
 
-    .whisper-caption {
-      font-style: italic;
-      font-size: 1.35rem;
+    .venue-callout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+      transform: translateY(-10px);
+    }
+
+    .venue-detail {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .venue-kicker {
+      color: var(--terracotta);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .venue-time {
       color: var(--terracotta-deep);
+      font-size: clamp(1.05rem, 4vw, 1.3rem);
+      font-weight: 600;
+    }
+
+    .venue-name {
+      color: var(--terracotta-deep);
+      font-size: clamp(1.25rem, 5.5vw, 1.7rem);
+      font-weight: 600;
       text-shadow: 0 2px 14px rgba(253, 248, 240, 0.96);
+    }
+
+    .venue-navigate,
+    .venue-maps-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(134, 56, 28, 0.32);
+      border-radius: 999px;
+      background: rgba(253, 248, 240, 0.92);
+      color: var(--terracotta-deep);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .venue-navigate {
+      min-height: 40px;
+      padding: 0 22px;
+      cursor: pointer;
+    }
+
+    .venue-navigate:hover,
+    .venue-navigate:focus-visible,
+    .venue-maps-link:hover,
+    .venue-maps-link:focus-visible {
+      background: var(--terracotta-deep);
+      color: #fffaf4;
+    }
+
+    .venue-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      background: rgba(60, 36, 21, 0.58);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .venue-modal.open {
+      display: flex;
+    }
+
+    .venue-modal-panel {
+      position: relative;
+      width: min(100%, 440px);
+      max-height: calc(100vh - 32px);
+      max-height: calc(100dvh - 32px);
+      overflow-y: auto;
+      padding: 24px;
+      border: 1px solid rgba(184, 93, 59, 0.3);
+      border-radius: 24px;
+      background: #fdf8f0;
+      box-shadow: 0 20px 50px rgba(60, 36, 21, 0.28);
+    }
+
+    .venue-modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      display: grid;
+      width: 36px;
+      height: 36px;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      background: #f4dfd2;
+      color: var(--terracotta-deep);
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .venue-modal-title {
+      margin-right: 40px;
+      color: var(--terracotta-deep);
+      font-family: 'Great Vibes', 'Brush Script MT', cursive;
+      font-size: 2rem;
+      line-height: 1.1;
+    }
+
+    .venue-modal-address {
+      margin-top: 5px;
+      color: var(--ink-soft);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.78rem;
+    }
+
+    .venue-map {
+      display: block;
+      width: 100%;
+      height: clamp(210px, 42vh, 300px);
+      margin-top: 16px;
+      border: 0;
+      border-radius: 14px;
+    }
+
+    .venue-maps-link {
+      width: 100%;
+      min-height: 42px;
+      margin-top: 12px;
+      background: var(--terracotta-deep);
+      color: #fffaf4;
     }
 
     /* Band 3: Chhatri & Peacocks Title */
     .band-chhatri .overlay-content {
-      top: 15%;
+      top: calc(10%);
     }
 
     .section-heading {
@@ -566,9 +704,89 @@
       text-shadow: 0 2px 18px rgba(253, 248, 240, 0.96);
     }
 
+    .invitation-copy {
+      text-align: center;
+      text-shadow: 0 2px 14px rgba(253, 248, 240, 0.96);
+    }
+
+    .invitation-hosts,
+    .invitation-name {
+      color: var(--terracotta-deep);
+      font-family: 'Great Vibes', 'Brush Script MT', cursive;
+      font-weight: 400;
+    }
+
+    .invitation-hosts {
+      font-size: clamp(1.75rem, 8vw, 2.35rem);
+      line-height: 1.05;
+    }
+
+    .invitation-request {
+      max-width: 420px;
+      margin: 8px auto 0;
+      color: var(--ink);
+      font-size: clamp(0.9rem, 3.8vw, 1.05rem);
+      line-height: 1.25;
+    }
+
+    .invitation-couple {
+      margin-top: 12px;
+    }
+
+    .invitation-name {
+      font-size: clamp(1.8rem, 8vw, 2.3rem);
+      line-height: 0.95;
+    }
+
+    .invitation-parentage {
+      margin-top: 2px;
+      color: var(--ink-soft);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(0.58rem, 2.6vw, 0.72rem);
+      line-height: 1.25;
+    }
+
+    .invitation-weds {
+      margin: 4px 0;
+      color: var(--terracotta);
+      font-size: clamp(1.15rem, 5vw, 1.45rem);
+      font-style: italic;
+    }
+
+    .invitation-special {
+      margin-top: 42%;
+    }
+
+    .invitation-special-label {
+      color: var(--terracotta);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+
+    .invitation-special-names {
+      margin-top: 3px;
+      color: var(--terracotta-deep);
+      font-size: clamp(0.82rem, 3.6vw, 1rem);
+      font-weight: 600;
+    }
+
+    .invitation-residence {
+      margin-top: 20%;
+    }
+
+    .invitation-address {
+      margin-top: 3px;
+      color: var(--ink-soft);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(0.58rem, 2.7vw, 0.72rem);
+      line-height: 1.3;
+    }
+
     .timeline-heading {
       position: relative;
-      top: -500px;
+      top: -440px;
       font-family: 'Great Vibes', 'Brush Script MT', cursive;
     }
 
@@ -806,17 +1024,17 @@
           <span class="hero-weds">weds</span>
           <span>Snehill</span>
         </h1>
-        <div class="scroll-hint">Scroll to Explore ↓</div>
+        <a class="scroll-hint" href="#save-the-date">Scroll to Explore ↓</a>
       </div>
     </section>
 
     <!-- Band 2: Couple Walking Down the Floral Aisle -->
     <section class="scene-band band-aisle">
       <img src="images/panel-2.png" alt="Bride and groom walking toward mandap" class="scene-art" />
-      <div class="between-images-date" aria-label="Save the date: 21 April 2027">
+      <div id="save-the-date" class="between-images-date" aria-label="Save the date: 21 April 2027">
         <span class="save-the-date-label">Save the Date</span>
         <span class="save-the-date-day">21 April 2027</span>
-        <div class="between-images-countdown" id="wedding-countdown" role="timer" aria-label="Countdown to 21 April 2027">
+        <div class="between-images-countdown" id="wedding-countdown" role="timer" aria-label="Countdown to 21 April 2027 at 8:00 PM IST">
           <div class="between-images-countdown-unit"><span class="between-images-countdown-value" id="countdown-days">0</span><span class="between-images-countdown-label">Days</span></div>
           <div class="between-images-countdown-unit"><span class="between-images-countdown-value" id="countdown-hours">00</span><span class="between-images-countdown-label">Hours</span></div>
           <div class="between-images-countdown-unit"><span class="between-images-countdown-value" id="countdown-minutes">00</span><span class="between-images-countdown-label">Minutes</span></div>
@@ -826,16 +1044,42 @@
         <p class="between-images-countdown-complete" id="countdown-complete" hidden>The celebration is here!</p>
       </div>
       <div class="overlay-content reveal">
-        <p class="whisper-caption">Two souls, one sacred path...</p>
+        <div class="venue-callout">
+          <div class="venue-detail">
+            <p class="venue-kicker">Join us at</p>
+            <p class="venue-time">8:00 PM</p>
+          </div>
+          <div class="venue-detail">
+            <p class="venue-kicker">The Venue</p>
+            <p class="venue-name">Aashirwad Banquet, Zirakpur</p>
+          </div>
+          <button id="venue-navigate" class="venue-navigate" type="button" aria-haspopup="dialog" aria-controls="venue-modal">Navigate</button>
+        </div>
       </div>
     </section>
 
     <!-- Band 3: Chhatri Pavilions & Peacocks -->
     <section id="couple" class="scene-band band-chhatri">
       <img src="images/panel-3.png" alt="Chhatri pavilions and peacocks" class="scene-art" />
-      <div class="overlay-content reveal">
-        <h2 class="section-heading">Snehill &amp; Gaurav</h2>
-        <p class="sub-kicker">Together with their loving families</p>
+      <div class="overlay-content reveal invitation-copy">
+        <h2 class="invitation-hosts">Raj &amp; Sewa Ram Bharti</h2>
+        <p class="invitation-request">Request the pleasure of your company at the <br>wedding ceremony of their beloved grandson:</p>
+        <div class="invitation-couple">
+          <p class="invitation-name">Gaurav</p>
+          <p class="invitation-parentage">(S/O Seema &amp; Arvinder Bharti)</p>
+          <p class="invitation-weds">weds</p>
+          <p class="invitation-name">Snehill</p>
+          <p class="invitation-parentage">(D/O Samta &amp; Late Raman Juneja)</p>
+        </div>
+        <div class="invitation-special">
+          <p class="invitation-special-label">Special Invitation from:</p>
+          <p class="invitation-special-names">Sourav Bharti</p>
+        </div>
+        <div class="invitation-residence">
+          <p class="invitation-special-label">Residence Address:</p>
+          <p class="invitation-address">847 Saini Vihar, Phase-2 Baltana Zirakpur</p>
+          <p class="invitation-address">Contact- 9815970847, 9915050847</p>
+        </div>
       </div>
     </section>
 
@@ -879,8 +1123,24 @@
 
   </main>
 
+  <div id="venue-modal" class="venue-modal" role="dialog" aria-modal="true" aria-labelledby="venue-modal-title" aria-hidden="true">
+    <div class="venue-modal-panel">
+      <button id="venue-modal-close" class="venue-modal-close" type="button" aria-label="Close venue map">×</button>
+      <h2 id="venue-modal-title" class="venue-modal-title">Venue location</h2>
+      <p class="venue-modal-address">Aashirwad Banquet, Zirakpur</p>
+      <iframe
+        class="venue-map"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d254.22177347212167!2d76.83721187847343!3d30.662681113511113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390f94b7594cce4d%3A0x62e7b24d33403d89!2sAashirwad%20Banquet!5e0!3m2!1sen!2sin!4v1795530975522!5m2!1sen!2sin"
+        title="Map to Aashirwad Banquet, Zirakpur"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <a class="venue-maps-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=30.662681113511113%2C76.83721187847343" target="_blank" rel="noopener noreferrer">Open in Google Maps ↗</a>
+    </div>
+  </div>
+
   <div class="desktop-only-notice" aria-label="Mobile viewing notice">
-    <img src="assets/sticker.png" alt="Gaurav and Snehill wedding illustration" />
+    <img src="assets/sitcker-transparent.png" alt="Gaurav and Snehill wedding illustration" />
     <p>This invitation is designed for mobile screens.</p>
     <p>Please open it on your phone.</p>
   </div>
@@ -909,7 +1169,36 @@
       authError.textContent = 'Incorrect username or password.';
     });
 
-    const countdownTarget = new Date('2027-04-21T00:00:00+05:30').getTime();
+      const venueModal = document.getElementById('venue-modal');
+      const venueNavigate = document.getElementById('venue-navigate');
+      const venueModalClose = document.getElementById('venue-modal-close');
+      let previousBodyOverflow = '';
+
+      function openVenueModal() {
+        previousBodyOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        venueModal.classList.add('open');
+        venueModal.setAttribute('aria-hidden', 'false');
+        venueModalClose.focus();
+      }
+
+      function closeVenueModal() {
+        venueModal.classList.remove('open');
+        venueModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = previousBodyOverflow;
+        venueNavigate.focus();
+      }
+
+      venueNavigate.addEventListener('click', openVenueModal);
+      venueModalClose.addEventListener('click', closeVenueModal);
+      venueModal.addEventListener('click', (event) => {
+        if (event.target === venueModal) closeVenueModal();
+      });
+      venueModal.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeVenueModal();
+      });
+
+    const countdownTarget = new Date('2027-04-21T20:00:00+05:30').getTime();
     const countdownDisplay = document.getElementById('wedding-countdown');
     const countdownCaption = document.getElementById('countdown-caption');
     const countdownComplete = document.getElementById('countdown-complete');
