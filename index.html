@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Gaurav &amp; Snehill — Wedding Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --outer-bg: #efe0cb;
+      --canvas-bg: #f8eedf;
+      --terracotta: #b85d3b;
+      --terracotta-deep: #86381c;
+      --saffron: #de6b24;
+      --ink: #3c2415;
+      --ink-soft: #6b4b36;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background-color: var(--outer-bg);
+      color: var(--ink);
+      overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    body.auth-locked > *:not(#auth-gate):not(.desktop-only-notice) {
+      display: none !important;
+    }
+
+    #auth-gate,
+    .desktop-only-notice {
+      display: none;
+    }
+
+    body.auth-locked #auth-gate {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 100vh;
+      padding: 24px;
+      background:
+        radial-gradient(at 15% 15%, rgba(222, 107, 36, 0.12), transparent 50%),
+        radial-gradient(at 85% 80%, rgba(184, 93, 59, 0.12), transparent 50%),
+        #fdf8f0;
+    }
+
+    .auth-card {
+      width: min(100%, 384px);
+      padding: 32px;
+      text-align: center;
+      background: rgba(255, 251, 245, 0.96);
+      border: 1.5px solid rgba(184, 93, 59, 0.28);
+      border-radius: 24px;
+      box-shadow: 0 12px 32px rgba(60, 36, 21, 0.12);
+    }
+
+    .auth-card h1 {
+      color: var(--terracotta-deep);
+      font-family: 'Great Vibes', 'Brush Script MT', cursive;
+      font-size: 2.5rem;
+      font-weight: 400;
+    }
+
+    .auth-card p {
+      margin: 6px 0 20px;
+      color: var(--ink-soft);
+      font-size: 1.15rem;
+    }
+
+    .auth-card label {
+      display: block;
+      margin: 12px 0 5px;
+      color: var(--terracotta-deep);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    .auth-card input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1px solid rgba(184, 93, 59, 0.35);
+      border-radius: 12px;
+      background: #fdf8f0;
+      color: var(--ink);
+      font: inherit;
+      outline: none;
+    }
+
+    .auth-card input:focus {
+      border-color: var(--terracotta);
+      box-shadow: 0 0 0 3px rgba(184, 93, 59, 0.14);
+    }
+
+    .auth-card button {
+      width: 100%;
+      margin-top: 16px;
+      padding: 12px 16px;
+      border: 0;
+      border-radius: 12px;
+      background: var(--terracotta-deep);
+      color: #fffaf4;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .auth-card button:hover {
+      background: var(--terracotta);
+    }
+
+    .auth-error {
+      min-height: 1.25rem;
+      margin: 10px 0 0 !important;
+      color: #a13e25 !important;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.8rem !important;
+    }
+
+    /* Mobile-Only Frame (Full width on phones, centered phone viewport on desktop) */
+    .mobile-shell {
+      position: relative;
+      width: 100%;
+      background: linear-gradient(180deg, #fdf8f0 0%, #f7ebd9 35%, #f4e2ca 70%, #f7ead7 100%);
+      box-shadow: 0 0 50px rgba(60, 36, 21, 0.16);
+      overflow: hidden;
+    }
+
+    /* Sticky Wedding Invitation Header */
+    .wedding-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(253, 248, 240, 0.94);
+      border-bottom: 1px solid rgba(184, 93, 59, 0.18);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .header-bar {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 8px 16px;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .header-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid rgba(184, 93, 59, 0.42);
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(60, 36, 21, 0.12);
+    }
+
+    .header-names {
+      display: block;
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.05;
+      color: var(--terracotta-deep);
+    }
+
+    .header-kicker {
+      display: block;
+      margin-top: 3px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+    }
+
+    .menu-toggle {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(184, 93, 59, 0.18);
+      border-radius: 50%;
+      background: #f4dfd2;
+      color: var(--terracotta-deep);
+      cursor: pointer;
+    }
+
+    .menu-toggle svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .mobile-navigation {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      max-height: 0;
+      overflow: hidden;
+      margin: 0 16px;
+      padding: 0;
+      border-top: 1px solid transparent;
+      opacity: 0;
+      visibility: hidden;
+      transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease,
+        border-color 0.35s ease, visibility 0s linear 0.35s;
+    }
+
+    .mobile-navigation.open {
+      max-height: 160px;
+      padding: 8px 0 10px;
+      border-top-color: rgba(184, 93, 59, 0.14);
+      opacity: 1;
+      visibility: visible;
+      transition-delay: 0s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mobile-navigation {
+        transition: none;
+      }
+    }
+
+    .mobile-navigation a {
+      border-radius: 10px;
+      padding: 9px 10px;
+      color: var(--terracotta-deep);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .mobile-navigation a:hover,
+    .mobile-navigation a:focus-visible {
+      background: var(--terracotta);
+      color: #fffaf4;
+      outline: none;
+    }
+
+    /* Side Floral Corner Arches & Stepped Brass Bells Overlay */
+    .side-decor-layer {
+      position: absolute;
+      top: 64px;
+      left: 0;
+      width: 100%;
+      height: 520px;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .side-decor-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .side-bell-swing {
+      transform-box: fill-box;
+      transform-origin: top center;
+      animation: sideBellSway 4.4s ease-in-out infinite;
+    }
+
+    .side-bell-swing:nth-child(even) {
+      animation-duration: 5.2s;
+      animation-delay: -1.6s;
+    }
+
+    @keyframes sideBellSway {
+      0%, 100% { transform: rotate(2.4deg); }
+      50% { transform: rotate(-2.4deg); }
+    }
+
+    /* Each Vertical Mobile Scene Band */
+    .scene-band {
+      position: relative;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Overlap subsequent bands & feather top/bottom edges so seams vanish */
+    .scene-band + .scene-band {
+      margin-top: -15%;
+    }
+
+    /* Uses your mobile image's exact vertical proportions without side-cropping */
+    .scene-art {
+      display: block;
+      width: 100%;
+      height: auto;
+      position: relative;
+      z-index: 0;
+      pointer-events: none;
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 0, 0, 1) 12%,
+        rgba(0, 0, 0, 1) 88%,
+        transparent 100%
+      );
+      mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 0, 0, 1) 12%,
+        rgba(0, 0, 0, 1) 88%,
+        transparent 100%
+      );
+    }
+
+    .scene-band:first-child .scene-art {
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 1) 86%,
+        transparent 100%
+      );
+      mask-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 1) 86%,
+        transparent 100%
+      );
+    }
+
+    /* Positioned Text Overlays Anchored to Safe Zones of Vertical Artwork */
+    .overlay-content {
+      position: absolute;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      padding: 0 22px;
+    }
+
+    /* Band 1: Hero Names in Upper Ivory Sky */
+    .band-hero .overlay-content {
+      top: 19%;
+    }
+
+    .hero-names {
+      font-size: clamp(2.8rem, 12vw, 3.8rem);
+      font-family: 'Great Vibes', 'Brush Script MT', cursive;
+      font-weight: 400;
+      line-height: 0.82;
+      color: rgba(184, 93, 59, 0.9);
+      text-shadow: 0 3px 22px rgba(255, 250, 242, 0.96);
+    }
+
+    .hero-names span {
+      display: block;
+    }
+
+    .hero-names .hero-weds {
+      font-family: 'Great Vibes', 'Brush Script MT', cursive;
+      font-size: 0.42em;
+      line-height: 1.35;
+    }
+
+    .save-the-date {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 16px;
+      color: var(--terracotta-deep);
+      text-shadow: 0 2px 14px rgba(253, 248, 240, 0.98);
+      animation: saveDateEntrance 1.2s ease-out 0.45s both,
+                 saveDateGlow 3.2s ease-in-out 1.7s infinite;
+    }
+
+    .save-the-date-label {
+      font-family: 'Great Vibes', 'Brush Script MT', cursive;
+      font-size: clamp(1.35rem, 6vw, 1.85rem);
+      line-height: 1;
+    }
+
+    .save-the-date-day {
+      margin-top: 5px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(0.72rem, 3vw, 0.86rem);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .save-the-date::before,
+    .save-the-date::after {
+      content: '';
+      width: 54px;
+      height: 1px;
+      margin: 7px 0;
+      background: linear-gradient(90deg, transparent, var(--saffron), transparent);
+      animation: dateLineGrow 1s ease-out 0.8s both;
+    }
+
+    @keyframes saveDateEntrance {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(14px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1);
+      }
+    }
+
+    @keyframes saveDateGlow {
+      0%, 100% {
+        filter: drop-shadow(0 0 0 rgba(222, 107, 36, 0));
+      }
+      50% {
+        filter: drop-shadow(0 3px 7px rgba(222, 107, 36, 0.28));
+      }
+    }
+
+    @keyframes dateLineGrow {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .save-the-date,
+      .save-the-date::before,
+      .save-the-date::after {
+        animation: none;
+      }
+    }
+
+    .scroll-hint {
+      margin-top: 14px;
+      display: inline-block;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terracotta-deep);
+      background: rgba(253, 248, 240, 0.8);
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(184, 93, 59, 0.22);
+    }
+
+    /* Band 2: Couple Aisle Caption */
+    .band-aisle .overlay-content {
+      bottom: 13%;
+    }
+
+    .between-images-date {
+      position: absolute;
+      top: calc(-11% + 20px);
+      left: 50%;
+      z-index: 6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: max-content;
+      max-width: calc(100% - 40px);
+      transform: translateX(-50%);
+      color: var(--terracotta-deep);
+      text-align: center;
+      text-shadow: 0 2px 14px rgba(253, 248, 240, 0.98);
+      animation: saveDateEntrance 1.2s ease-out 0.45s both,
+                 saveDateGlow 3.2s ease-in-out 1.7s infinite;
+    }
+
+    .between-images-date .save-the-date-label {
+      font-size: clamp(1.55rem, 7vw, 2.1rem);
+    }
+
+    .between-images-date .save-the-date-day {
+      font-size: clamp(0.78rem, 3.4vw, 0.92rem);
+    }
+
+    .between-images-countdown {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(8px, 2.4vw, 14px);
+      width: min(360px, calc(100vw - 48px));
+      margin-top: 90px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      text-shadow: none;
+    }
+
+    .between-images-countdown-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .between-images-countdown-value {
+      color: var(--terracotta-deep);
+      font-size: clamp(1.05rem, 4vw, 1.35rem);
+      font-weight: 600;
+      line-height: 1.2;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .between-images-countdown-label {
+      margin-top: 4px;
+      color: var(--ink-soft);
+      font-size: 0.56rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .between-images-countdown-caption {
+      margin-top: 8px;
+      color: var(--terracotta-deep);
+      font-size: clamp(0.95rem, 4vw, 1.15rem);
+      font-style: italic;
+    }
+
+    .between-images-countdown-complete {
+      margin-top: 50px;
+      font-family: 'Great Vibes', 'Brush Script MT', cursive;
+      font-size: clamp(1.35rem, 6vw, 1.85rem);
+    }
+
+    .whisper-caption {
+      font-style: italic;
+      font-size: 1.35rem;
+      color: var(--terracotta-deep);
+      text-shadow: 0 2px 14px rgba(253, 248, 240, 0.96);
+    }
+
+    /* Band 3: Chhatri & Peacocks Title */
+    .band-chhatri .overlay-content {
+      top: 15%;
+    }
+
+    .section-heading {
+      font-size: clamp(2.1rem, 8.8vw, 2.85rem);
+      font-weight: 500;
+      color: var(--terracotta);
+      line-height: 1.08;
+      text-shadow: 0 2px 18px rgba(253, 248, 240, 0.96);
+    }
+
+    .timeline-heading {
+      position: relative;
+      top: -500px;
+      font-family: 'Great Vibes', 'Brush Script MT', cursive;
+    }
+
+    .sub-kicker {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-top: 6px;
+    }
+
+    /* Band 4: Terrace Courtyard + Stacked Mobile Cards */
+    .band-terrace {
+      padding-bottom: 56px;
+    }
+
+    .terrace-flow-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      margin-top: -54%;
+      padding: 0 20px;
+    }
+
+    .timeline-stack {
+      position: relative;
+      top: -400px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 20px 0 42px;
+    }
+
+    .glass-card {
+      background: rgba(253, 248, 240, 0.58);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(184, 93, 59, 0.24);
+      border-radius: 16px;
+      padding: 18px 16px;
+      box-shadow: 0 10px 24px rgba(60, 36, 21, 0.06);
+    }
+
+    .card-tag {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--saffron);
+      margin-bottom: 4px;
+    }
+
+    .glass-card h3 {
+      font-size: 1.45rem;
+      color: var(--terracotta-deep);
+      margin-bottom: 4px;
+    }
+
+    .glass-card p {
+      font-size: 1.02rem;
+      color: var(--ink-soft);
+      line-height: 1.4;
+    }
+
+    .couple-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .arch-card {
+      background: rgba(255, 251, 245, 0.9);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(184, 93, 59, 0.24);
+      border-radius: 90px 90px 18px 18px;
+      padding: 30px 22px 22px;
+      box-shadow: 0 12px 28px rgba(60, 36, 21, 0.07);
+    }
+
+    .arch-card h3 {
+      font-size: 1.65rem;
+      color: var(--terracotta-deep);
+      margin-bottom: 6px;
+    }
+
+    .arch-card p {
+      font-size: 1.05rem;
+      color: var(--ink-soft);
+      line-height: 1.48;
+    }
+
+    /* Smooth Scroll Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (min-width: 600px) {
+      body {
+        max-width: none;
+        background: var(--canvas-bg);
+        box-shadow: none;
+      }
+
+      #auth-gate,
+      body > * {
+        display: none !important;
+      }
+
+      .desktop-only-notice {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 100vh;
+        padding: 32px;
+        color: var(--terracotta-deep);
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        text-align: center;
+      }
+
+      .desktop-only-notice img {
+        width: min(320px, 42vw);
+        height: auto;
+        margin-bottom: 24px;
+        filter: drop-shadow(0 14px 18px rgba(60, 36, 21, 0.14));
+      }
+    }
+  </style>
+</head>
+<body class="auth-locked">
+  <div id="auth-gate" role="dialog" aria-labelledby="auth-title">
+    <form id="auth-form" class="auth-card">
+      <h1 id="auth-title">Wedding Invitation</h1>
+      <p>Enter the invitation details to continue</p>
+      <label for="auth-username">Username</label>
+      <input id="auth-username" name="username" type="text" autocomplete="username" required />
+      <label for="auth-password">Password</label>
+      <input id="auth-password" name="password" type="password" autocomplete="current-password" required />
+      <p id="auth-error" class="auth-error" role="alert"></p>
+      <button type="submit">Open Invitation</button>
+    </form>
+  </div>
+
+  <main class="mobile-shell">
+    <header class="wedding-header" aria-label="Wedding invitation header">
+      <div class="header-bar">
+        <a href="#home" class="header-brand" aria-label="Go to invitation home">
+          <img src="assets/logo.png" alt="Gaurav and Snehill" class="header-logo" />
+          <span>
+            <span class="header-names">Gaurav &amp; Snehill</span>
+            <span class="header-kicker">Wedding Invitation</span>
+          </span>
+        </a>
+        <button id="menu-toggle" type="button" class="menu-toggle" aria-controls="mobile-navigation" aria-expanded="false" aria-label="Open navigation menu">
+          <svg id="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+      <nav id="mobile-navigation" class="mobile-navigation" aria-label="Invitation sections">
+        <a href="#home">Welcome</a>
+        <a href="#couple">Our Couple</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#meet">Meet the Couple</a>
+      </nav>
+    </header>
+
+    <!-- Side Floral Arches & Stepped Brass Bells -->
+    <div class="side-decor-layer" aria-hidden="true">
+      <svg class="side-decor-svg" viewBox="0 0 480 520" preserveAspectRatio="xMidYMin slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="mMarigoldGold" cx="38%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#ffd659"/>
+            <stop offset="70%" stop-color="#f09718"/>
+            <stop offset="100%" stop-color="#bd5f04"/>
+          </radialGradient>
+          <radialGradient id="mMarigoldOrange" cx="38%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#ffa242"/>
+            <stop offset="70%" stop-color="#e85b17"/>
+            <stop offset="100%" stop-color="#a83207"/>
+          </radialGradient>
+          <radialGradient id="mRose" cx="40%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#ff9db0"/>
+            <stop offset="70%" stop-color="#e34d6b"/>
+            <stop offset="100%" stop-color="#9e223b"/>
+          </radialGradient>
+          <linearGradient id="mBrass" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffe699"/>
+            <stop offset="48%" stop-color="#d69c36"/>
+            <stop offset="100%" stop-color="#87550e"/>
+          </linearGradient>
+          <linearGradient id="mLeaf" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#689c46"/>
+            <stop offset="100%" stop-color="#355e1e"/>
+          </linearGradient>
+          <filter id="mShadow" x="-15%" y="-10%" width="130%" height="125%">
+            <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#3b2212" flood-opacity="0.16"/>
+          </filter>
+        </defs>
+
+        <g filter="url(#mShadow)">
+          <!-- Left Corner Arch -->
+          <path d="M 0 0 L 122 0 Q 84 10 70 46 Q 58 76 28 82 Q 8 86 0 116 Z"
+                fill="#fff9ee" stroke="#d9a452" stroke-width="1.6"/>
+          <!-- Right Corner Arch -->
+          <path d="M 480 0 L 358 0 Q 396 10 410 46 Q 422 76 452 82 Q 472 86 480 116 Z"
+                fill="#fff9ee" stroke="#d9a452" stroke-width="1.6"/>
+        </g>
+
+        <g id="m-flowers-layer" filter="url(#mShadow)"></g>
+        <g id="m-bells-layer" filter="url(#mShadow)"></g>
+      </svg>
+    </div>
+
+    <!-- Band 1: Temple & Bells -->
+    <section id="home" class="scene-band band-hero">
+      <img src="images/panel-1.png" alt="Sacred Temple Backdrop" class="scene-art" />
+      <div class="overlay-content reveal">
+        <h1 class="hero-names">
+          <span>Gaurav</span>
+          <span class="hero-weds">weds</span>
+          <span>Snehill</span>
+        </h1>
+        <div class="scroll-hint">Scroll to Explore ↓</div>
+      </div>
+    </section>
+
+    <!-- Band 2: Couple Walking Down the Floral Aisle -->
+    <section class="scene-band band-aisle">
+      <img src="images/panel-2.png" alt="Bride and groom walking toward mandap" class="scene-art" />
+      <div class="between-images-date" aria-label="Save the date: 21 April 2027">
+        <span class="save-the-date-label">Save the Date</span>
+        <span class="save-the-date-day">21 April 2027</span>
+        <div class="between-images-countdown" id="wedding-countdown" role="timer" aria-label="Countdown to 21 April 2027">
+          <div class="between-images-countdown-unit"><span class="between-images-countdown-value" id="countdown-days">0</span><span class="between-images-countdown-label">Days</span></div>
+          <div class="between-images-countdown-unit"><span class="between-images-countdown-value" id="countdown-hours">00</span><span class="between-images-countdown-label">Hours</span></div>
+          <div class="between-images-countdown-unit"><span class="between-images-countdown-value" id="countdown-minutes">00</span><span class="between-images-countdown-label">Minutes</span></div>
+          <div class="between-images-countdown-unit"><span class="between-images-countdown-value" id="countdown-seconds">00</span><span class="between-images-countdown-label">Seconds</span></div>
+        </div>
+        <p class="between-images-countdown-caption" id="countdown-caption">Countdown to the big day</p>
+        <p class="between-images-countdown-complete" id="countdown-complete" hidden>The celebration is here!</p>
+      </div>
+      <div class="overlay-content reveal">
+        <p class="whisper-caption">Two souls, one sacred path...</p>
+      </div>
+    </section>
+
+    <!-- Band 3: Chhatri Pavilions & Peacocks -->
+    <section id="couple" class="scene-band band-chhatri">
+      <img src="images/panel-3.png" alt="Chhatri pavilions and peacocks" class="scene-art" />
+      <div class="overlay-content reveal">
+        <h2 class="section-heading">Snehill &amp; Gaurav</h2>
+        <p class="sub-kicker">Together with their loving families</p>
+      </div>
+    </section>
+
+    <!-- Band 4: Terrace Courtyard — Timeline & Meet the Couple -->
+    <section id="timeline" class="scene-band band-terrace">
+      <img src="images/panel-4.png" alt="Sandstone terrace courtyard" class="scene-art" />
+      <div class="terrace-flow-content reveal">
+        <h2 class="section-heading timeline-heading">Wedding Celebration Timeline</h2>
+
+        <div class="timeline-stack">
+          <div class="glass-card">
+            <div class="card-tag">Ceremony I</div>
+            <h3>Haldi &amp; Mehendi</h3>
+            <p>Sunlit marigold blessings, folk songs &amp; family warmth</p>
+          </div>
+          <div class="glass-card">
+            <div class="card-tag">Ceremony II</div>
+            <h3>Ladies Sangeet</h3>
+            <p>An evening of music, dance &amp; celebration</p>
+          </div>
+          <div class="glass-card">
+            <div class="card-tag">Ceremony III</div>
+            <h3>Wedding &amp; Vows</h3>
+            <p>Sacred pheras &amp; royal dinner reception</p>
+          </div>
+        </div>
+
+        <h2 id="meet" class="section-heading">Meet the Bride &amp; Groom</h2>
+        <div class="couple-stack">
+          <div class="arch-card">
+            <h3>Snehill</h3>
+            <p>Graceful, radiant, and full of warmth — bringing joy and artistry to every step of our journey.</p>
+          </div>
+          <div class="arch-card">
+            <h3>Gaurav</h3>
+            <p>Thoughtful, grounded, and endlessly curious — excited to build a lifetime rooted in tradition and laughter.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="desktop-only-notice" aria-label="Mobile viewing notice">
+    <img src="assets/sticker.png" alt="Gaurav and Snehill wedding illustration" />
+    <p>This invitation is designed for mobile screens.</p>
+    <p>Please open it on your phone.</p>
+  </div>
+
+  <script>
+    const authForm = document.getElementById('auth-form');
+    const authError = document.getElementById('auth-error');
+
+    if (sessionStorage.getItem('wedding-main-invite-authenticated') === 'true') {
+      document.body.classList.remove('auth-locked');
+    }
+
+    authForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const formData = new FormData(authForm);
+      const username = formData.get('username');
+      const password = formData.get('password');
+
+      if (username === 'gaurav' && password === 'snehill') {
+        sessionStorage.setItem('wedding-main-invite-authenticated', 'true');
+        document.body.classList.remove('auth-locked');
+        authForm.reset();
+        return;
+      }
+
+      authError.textContent = 'Incorrect username or password.';
+    });
+
+    const countdownTarget = new Date('2027-04-21T00:00:00+05:30').getTime();
+    const countdownDisplay = document.getElementById('wedding-countdown');
+    const countdownCaption = document.getElementById('countdown-caption');
+    const countdownComplete = document.getElementById('countdown-complete');
+
+    function updateWeddingCountdown() {
+      const remaining = countdownTarget - Date.now();
+      if (remaining <= 0) {
+        countdownDisplay.hidden = true;
+        countdownCaption.hidden = true;
+        countdownComplete.hidden = false;
+        return;
+      }
+
+      const days = Math.floor(remaining / 86400000);
+      const hours = Math.floor((remaining % 86400000) / 3600000);
+      const minutes = Math.floor((remaining % 3600000) / 60000);
+      const seconds = Math.floor((remaining % 60000) / 1000);
+
+      document.getElementById('countdown-days').textContent = String(days);
+      document.getElementById('countdown-hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('countdown-minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('countdown-seconds').textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateWeddingCountdown();
+    setInterval(updateWeddingCountdown, 1000);
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileNavigation = document.getElementById('mobile-navigation');
+    const menuIcon = document.getElementById('menu-icon');
+
+    function closeNavigation() {
+      mobileNavigation.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Open navigation menu');
+      menuIcon.innerHTML = '<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" />';
+    }
+
+    menuToggle.addEventListener('click', () => {
+      const open = !mobileNavigation.classList.contains('open');
+      mobileNavigation.classList.toggle('open', open);
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+      menuIcon.innerHTML = open
+        ? '<path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" />'
+        : '<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" />';
+    });
+
+    mobileNavigation.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeNavigation);
+    });
+
+    // Scroll Reveal
+    const revealVisibleElements = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    };
+    const observer = new IntersectionObserver(revealVisibleElements, { threshold: 0.12 });
+    const timelineObserver = new IntersectionObserver(revealVisibleElements, {
+      rootMargin: '0px 0px 500px 0px',
+      threshold: 0
+    });
+
+    document.querySelectorAll('.reveal').forEach((el) => {
+      (el.classList.contains('terrace-flow-content') ? timelineObserver : observer).observe(el);
+    });
+
+    // Mobile-Scaled Side Floral Garlands & Stepped Brass Bells
+    (function renderMobileSideDecor() {
+      const flowersLayer = document.getElementById('m-flowers-layer');
+      const bellsLayer = document.getElementById('m-bells-layer');
+      if (!flowersLayer || !bellsLayer) return;
+
+      const NS = 'http://www.w3.org/2000/svg';
+      const el = (tag, attrs = {}) => {
+        const node = document.createElementNS(NS, tag);
+        for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
+        return node;
+      };
+
+      function drawRosette(cx, cy, r, fill, angle = 0) {
+        const g = el('g', { transform: `translate(${cx.toFixed(1)}, ${cy.toFixed(1)}) rotate(${angle.toFixed(1)})` });
+        for (let p = 0; p < 8; p++) {
+          g.appendChild(el('ellipse', {
+            cx: '0',
+            cy: (-r * 0.48).toFixed(1),
+            rx: (r * 0.42).toFixed(1),
+            ry: (r * 0.56).toFixed(1),
+            fill,
+            transform: `rotate(${p * 45})`
+          }));
+        }
+        g.appendChild(el('circle', { cx: '0', cy: '0', r: (r * 0.34).toFixed(1), fill: '#fff4c2' }));
+        return g;
+      }
+
+      function drawHangingBell(x, topY, bottomY, scale = 0.72) {
+        const g = el('g', { class: 'side-bell-swing' });
+        g.appendChild(el('line', {
+          x1: x.toFixed(1), y1: topY.toFixed(1),
+          x2: x.toFixed(1), y2: bottomY.toFixed(1),
+          stroke: '#9e5829', 'stroke-width': '1.4', 'stroke-dasharray': '2.5 2'
+        }));
+
+        const beads = 8;
+        for (let b = 1; b <= beads; b++) {
+          const by = topY + ((bottomY - topY) * b) / (beads + 1);
+          g.appendChild(el('circle', {
+            cx: x.toFixed(1), cy: by.toFixed(1),
+            r: b % 2 === 1 ? '2.8' : '2.1',
+            fill: b % 2 === 1 ? '#f29b1d' : '#fffaf0',
+            stroke: '#9c5a27', 'stroke-width': '0.6'
+          }));
+        }
+
+        const bg = el('g', { transform: `translate(${x.toFixed(1)}, ${bottomY.toFixed(1)}) scale(${scale})` });
+        bg.appendChild(el('circle', { cx: '0', cy: '3', r: '4', fill: 'url(#mBrass)' }));
+        bg.appendChild(el('path', {
+          d: 'M -10 22 C -10 7, 10 7, 10 22 L 14 27 L -14 27 Z',
+          fill: 'url(#mBrass)', stroke: '#7d4d0c', 'stroke-width': '1.2'
+        }));
+        bg.appendChild(el('circle', { cx: '0', cy: '30', r: '3', fill: '#6e4208' }));
+        g.appendChild(bg);
+        return g;
+      }
+
+      [-1, 1].forEach((dir) => {
+        const edgeX = (x) => (dir === -1 ? x : 480 - x);
+        const pts = [
+          [12, 10, 10, 'url(#mMarigoldGold)'],
+          [32, 8, 9, 'url(#mRose)'],
+          [52, 7, 10, 'url(#mMarigoldOrange)'],
+          [74, 6, 9, 'url(#mMarigoldGold)'],
+          [96, 5, 8, 'url(#mRose)'],
+          [8, 30, 9, 'url(#mRose)'],
+          [8, 52, 10, 'url(#mMarigoldGold)'],
+          [9, 74, 9, 'url(#mMarigoldOrange)'],
+          [11, 96, 9, 'url(#mRose)'],
+          [13, 118, 8, 'url(#mMarigoldGold)'],
+          [15, 140, 8, 'url(#mMarigoldOrange)'],
+          [17, 160, 7, 'url(#mRose)']
+        ];
+
+        pts.forEach(([px, py, r, fill], idx) => {
+          flowersLayer.appendChild(el('path', {
+            d: 'M 0 0 C -5 8, -4 16, 0 22 C 4 16, 5 8, 0 0 Z',
+            fill: 'url(#mLeaf)',
+            transform: `translate(${edgeX(px + 9).toFixed(1)}, ${(py + 2).toFixed(1)}) rotate(${dir * 35})`
+          }));
+          flowersLayer.appendChild(drawRosette(edgeX(px), py, r, fill, idx * 25));
+        });
+
+        bellsLayer.appendChild(drawHangingBell(edgeX(94), 8, 128, 0.64));
+        bellsLayer.appendChild(drawHangingBell(edgeX(66), 20, 165, 0.72));
+        bellsLayer.appendChild(drawHangingBell(edgeX(40), 46, 205, 0.78));
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#Gaurav di Snehill | Ring Ceremony Invitation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ivory: '#FFF8F4',
+                        blush: '#F6E8EA',
+                        rose: '#A51D3B',
+                        berry: '#172B4D',
+                        plum: '#0E1D38',
+                        gold: '#D6AD60',
+                        peach: '#C78A98',
+                        warmText: '#35232B'
+                    },
+                    fontFamily: {
+                        script: ['"Great Vibes"', 'cursive'],
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif']
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        :root { --ivory: #FFF8F4; --rose: #A51D3B; --berry: #172B4D; --plum: #0E1D38; --gold: #D6AD60; }
+        body {
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+            color: #35232B;
+            background: #FFF8F4;
+            background-image: radial-gradient(at 8% 12%, rgba(199,138,152,.20), transparent 42%), radial-gradient(at 90% 15%, rgba(23,43,77,.14), transparent 40%), radial-gradient(at 50% 80%, rgba(214,173,96,.16), transparent 50%);
+        }
+        body.auth-locked > *:not(#auth-gate) { display: none !important; }
+        #auth-gate { display: none; }
+        body.auth-locked #auth-gate {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 1.5rem;
+            background: #FFF8F4;
+            background-image: radial-gradient(at 8% 12%, rgba(199,138,152,.20), transparent 42%), radial-gradient(at 90% 15%, rgba(23,43,77,.14), transparent 40%);
+        }
+        .auth-card {
+            width: min(100%, 24rem);
+            padding: 2rem;
+            text-align: center;
+            background: rgba(255,253,250,.95);
+            border: 1px solid rgba(165,29,59,.22);
+            border-radius: 1.5rem;
+            box-shadow: 0 18px 45px -22px rgba(14,29,56,.28);
+        }
+        .auth-card input {
+            width: 100%;
+            padding: .7rem .9rem;
+            border: 1px solid rgba(165,29,59,.28);
+            border-radius: .75rem;
+            background: #FFF8F4;
+            color: #35232B;
+            outline: none;
+        }
+        .auth-card input:focus {
+            border-color: #A51D3B;
+            box-shadow: 0 0 0 3px rgba(165,29,59,.12);
+        }
+        .auth-card button {
+            width: 100%;
+            padding: .7rem 1rem;
+            border-radius: .75rem;
+            background: #172B4D;
+            color: #FFF8F4;
+            font-weight: 600;
+        }
+        .auth-card button:hover { background: #0E1D38; }
+        .auth-error { min-height: 1.25rem; color: #8A1732; font-size: .8rem; }
+        .desktop-only-notice { display: none; }
+        .paper-grain { position: fixed; inset: 0; z-index: 40; pointer-events: none; opacity: .14; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E"); }
+        .card { background: rgba(255,254,248,.82); border: 1px solid rgba(165,29,59,.20); box-shadow: 0 18px 45px -22px rgba(14,29,56,.28); backdrop-filter: blur(8px); }
+        .nav-bar { background: rgba(255,252,245,.9); border-bottom: 1px solid rgba(165,29,59,.18); backdrop-filter: blur(14px); }
+        .hero-art { filter: drop-shadow(0 22px 18px rgba(14,29,56,.18)); }
+        .petal { position: fixed; top: -30px; z-index: 30; pointer-events: none; animation: fall linear infinite; }
+        @keyframes fall { 0% { transform: translateY(-10vh) rotate(0); opacity: 0; } 15% { opacity: .9; } 85% { opacity: .9; } 100% { transform: translateY(110vh) rotate(360deg) translateX(45px); opacity: 0; } }
+        @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(165,29,59,.40); } 70% { box-shadow: 0 0 0 18px rgba(165,29,59,0); } }
+        .dance-pulse { animation: pulse 2.4s infinite; }
+        @keyframes beamSweepLeft { 0%, 100% { transform: rotate(-18deg); opacity: .45; } 50% { transform: rotate(22deg); opacity: .75; } }
+        @keyframes beamSweepRight { 0%, 100% { transform: rotate(18deg); opacity: .45; } 50% { transform: rotate(-22deg); opacity: .75; } }
+        @keyframes discoSpin { 0% { transform: translateX(0); } 100% { transform: translateX(18px); } }
+        @keyframes sparkleTwinkle { 0%, 100% { opacity: .2; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.3); } }
+        .spotlight-left { transform-origin: 180px 8px; animation: beamSweepLeft 5.5s ease-in-out infinite; }
+        .spotlight-right { transform-origin: 1020px 8px; animation: beamSweepRight 6.2s ease-in-out infinite; }
+        .spotlight-center-left { transform-origin: 480px 8px; animation: beamSweepRight 4.8s ease-in-out infinite; }
+        .spotlight-center-right { transform-origin: 720px 8px; animation: beamSweepLeft 5.1s ease-in-out infinite; }
+        .disco-facets { animation: discoSpin 3s linear infinite; }
+        .sparkle-1 { animation: sparkleTwinkle 2.1s ease-in-out infinite; }
+        .sparkle-2 { animation: sparkleTwinkle 2.8s ease-in-out infinite .7s; }
+        .sparkle-3 { animation: sparkleTwinkle 2.4s ease-in-out infinite 1.3s; }
+        .toran-sway { transform-origin: top center; animation: toranSway 3.5s ease-in-out infinite; }
+        .toran-sway-delayed { transform-origin: top center; animation: toranSway 4.2s ease-in-out infinite .8s; }
+        @keyframes toranSway { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg); } }
+        .decoration-garland { margin: 0 auto; max-width: 90rem; padding: 0; }
+        .decoration-garland svg { display: block; width: calc(100% + 1rem); max-height: 11.5rem; margin-left: -.5rem; filter: drop-shadow(0 2px 3px rgba(14,29,56,.16)); }
+        .menu-reveal { animation: reveal .18s ease-out; }
+        @keyframes reveal { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes diamondGlint { 0%,100% { opacity: .25; transform: scale(.75) rotate(0); } 50% { opacity: 1; transform: scale(1.25) rotate(18deg); } }
+        @keyframes fairyShimmer { 0%,100% { opacity: .4; } 50% { opacity: 1; } }
+        .diamond-sparkle-1 { animation: diamondGlint 2.6s ease-in-out infinite; }
+        .diamond-sparkle-2 { animation: diamondGlint 3.2s ease-in-out infinite .9s; }
+        .diamond-sparkle-3 { animation: diamondGlint 2.9s ease-in-out infinite 1.6s; }
+        .fairy-bulb-a { animation: fairyShimmer 1.8s ease-in-out infinite; }
+        .fairy-bulb-b { animation: fairyShimmer 2.2s ease-in-out infinite .7s; }
+        .legacy-decoration-garland { display: none; }
+        @media (min-width: 600px) {
+            body {
+                background-color: #F6E8EA;
+                box-shadow: none;
+            }
+            #auth-gate { display: none !important; }
+            body > * { display: none !important; }
+            .desktop-only-notice {
+                display: flex !important;
+                min-height: 100vh;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                padding: 2rem;
+                color: #172B4D;
+                font-family: "Plus Jakarta Sans", sans-serif;
+                font-size: .95rem;
+                line-height: 1.6;
+                text-align: center;
+            }
+            .desktop-only-notice img {
+                width: min(320px, 42vw);
+                height: auto;
+                margin-bottom: 1.5rem;
+                filter: drop-shadow(0 14px 18px rgba(62,25,52,.14));
+            }
+            .desktop-only-notice p { max-width: 28rem; margin: 0; }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-rose/20 selection:text-berry auth-locked">
+    <div id="auth-gate" role="dialog" aria-labelledby="auth-title">
+        <form id="auth-form" class="auth-card">
+            <div class="mb-5 text-3xl" aria-hidden="true">🌼</div>
+            <h1 id="auth-title" class="font-script text-4xl text-berry">Ring Ceremony</h1>
+            <p class="mt-1 mb-5 font-serif text-lg text-warmText/80">Enter the invitation details to continue</p>
+            <div class="space-y-3 text-left">
+                <label class="block text-sm font-medium text-berry" for="auth-username">Username</label>
+                <input id="auth-username" name="username" type="text" autocomplete="username" required>
+                <label class="block text-sm font-medium text-berry" for="auth-password">Password</label>
+                <input id="auth-password" name="password" type="password" autocomplete="current-password" required>
+            </div>
+            <p id="auth-error" class="auth-error mt-3" role="alert"></p>
+            <button type="submit" class="mt-1">Open Invitation</button>
+        </form>
+    </div>
+    <div class="desktop-only-notice">
+        <img src="../assets/sitcker-transparent.png" alt="Ring ceremony invitation artwork">
+        <p>This invitation is designed for mobile screens. Please open it on a phone to continue.</p>
+    </div>
+    <div class="paper-grain"></div>
+    <div id="petal-container" aria-hidden="true"></div>
+
+    <header class="relative z-10">
+        <div class="nav-bar sticky top-0 z-20 px-4 py-2.5">
+            <div class="mx-auto flex max-w-6xl items-center justify-between gap-3">
+                <a href="#" class="flex items-center gap-2.5" aria-label="Go to invitation home">
+                    <img src="../assets/logo.png" alt="Gaurav and Snehill" class="h-11 w-11 rounded-full border-2 border-gold/60 object-cover shadow-sm">
+                    <span>
+                        <span class="block font-serif text-lg font-bold leading-tight text-berry">Gaurav &amp; Snehill</span>
+                        <span class="block text-[10px] font-bold uppercase tracking-[.18em] text-rose">Ring Ceremony</span>
+                    </span>
+                </a>
+                <button id="menu-toggle" type="button" class="flex h-10 w-10 items-center justify-center rounded-full bg-blush text-berry transition hover:bg-rose hover:text-white" aria-controls="mobile-navigation" aria-expanded="false" aria-label="Open navigation menu" onclick="toggleNavigation()">
+                    <svg id="menu-icon" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"></path></svg>
+                </button>
+            </div>
+            <nav id="mobile-navigation" class="menu-reveal mx-auto mt-2.5 hidden max-w-6xl flex-col gap-1 border-t border-rose/15 pt-2.5 text-xs font-semibold text-berry" aria-label="Invitation sections">
+                <a href="#details" onclick="closeNavigation()" class="rounded-xl px-3 py-2.5 hover:bg-rose hover:text-white">Celebration Details</a>
+                <a href="#timeline" onclick="closeNavigation()" class="rounded-xl px-3 py-2.5 hover:bg-rose hover:text-white">Ceremony Programme</a>
+                <a href="#dance" onclick="closeNavigation()" class="rounded-xl px-3 py-2.5 hover:bg-rose hover:text-white">Make a Wish</a>
+            </nav>
+        </div>
+        <div class="decoration-garland" aria-label="Champagne gold engagement toran with rings, flowers and fairy lights">
+            <svg viewBox="0 0 1200 165" preserveAspectRatio="xMidYMin slice" role="img">
+                <defs>
+                    <linearGradient id="champagne-gold" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F9E79F"/><stop offset="50%" stop-color="#D4AF37"/><stop offset="100%" stop-color="#AA8220"/></linearGradient>
+                    <linearGradient id="rose-gold" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FADBD8"/><stop offset="50%" stop-color="#E5989B"/><stop offset="100%" stop-color="#B56576"/></linearGradient>
+                    <linearGradient id="diamond-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="55%" stop-color="#E0F2FE"/><stop offset="100%" stop-color="#BAE6FD"/></linearGradient>
+                    <g id="ring-rose-blush"><circle r="15" fill="#F4ACB7"/><circle r="10.5" fill="#FFCAD4" stroke="#D88C9A" stroke-width="1.3" stroke-dasharray="4 2"/><path d="M-4-2Q0-6 4-2Q5 3 0 4.5Q-5 3-4-2Z" fill="#B56576"/></g>
+                    <g id="ring-rose-ivory"><circle r="14" fill="#F8F3E6" stroke="#E6D5B8" stroke-width="1.2"/><circle r="9.5" fill="#FFFDF9" stroke="#D4AF37" stroke-width="1.1" stroke-dasharray="3 2"/><circle r="4" fill="#E6CCB2"/></g>
+                    <g id="babys-breath"><circle cx="-5" cy="-2" r="3" fill="#FFF" stroke="#E2E8F0" stroke-width=".7"/><circle cx="4" cy="-3" r="2.8" fill="#FFF" stroke="#E2E8F0" stroke-width=".7"/><circle cx="-1" cy="4" r="3.2" fill="#FFF" stroke="#E2E8F0" stroke-width=".7"/><circle cx="6" cy="3" r="2.5" fill="#FFF" stroke="#E2E8F0" stroke-width=".7"/></g>
+                    <g id="eucalyptus-leaf"><path d="M0 0C-7 9-7 22 0 30C7 22 7 9 0 0Z" fill="#6B8E78"/><path d="M0 2v24" stroke="#A3C1AD" stroke-width="1.1"/></g>
+                    <g id="crystal-drop"><circle r="2.5" fill="url(#champagne-gold)"/><polygon points="0,3 6,13 0,22 -6,13" fill="url(#diamond-grad)" stroke="#93C5FD" stroke-width=".9"/><line x1="0" y1="3" x2="0" y2="22" stroke="#FFF" stroke-width=".8" opacity=".8"/></g>
+                    <g id="fairy-bulb"><circle r="6" fill="#FEF08A" opacity=".35"/><circle r="2.8" fill="#FFFBEB" stroke="#F59E0B" stroke-width=".8"/></g>
+                </defs>
+                <path d="M0 4h1200" stroke="#6B8E78" stroke-width="4"/><path d="M0 7h1200" stroke="url(#champagne-gold)" stroke-width="2.2"/>
+                <path d="M0 10Q150 82 300 10Q450 82 600 10Q750 82 900 10Q1050 82 1200 10" fill="none" stroke="#6B8E78" stroke-width="2.2"/>
+                <path d="M0 16Q150 94 300 16Q450 94 600 16Q750 94 900 16Q1050 94 1200 16" fill="none" stroke="url(#champagne-gold)" stroke-width="1.4" stroke-dasharray="3 3"/>
+                <g class="toran-sway"><use href="#eucalyptus-leaf" x="60" y="5" transform="rotate(16 60 5)"/><use href="#eucalyptus-leaf" x="150" y="5" transform="rotate(-10 150 5)"/><use href="#eucalyptus-leaf" x="240" y="5" transform="rotate(14 240 5)"/><use href="#eucalyptus-leaf" x="360" y="5" transform="rotate(-15 360 5)"/><use href="#eucalyptus-leaf" x="450" y="5" transform="rotate(8 450 5)"/><use href="#eucalyptus-leaf" x="540" y="5" transform="rotate(-12 540 5)"/><use href="#eucalyptus-leaf" x="660" y="5" transform="rotate(15 660 5)"/><use href="#eucalyptus-leaf" x="750" y="5" transform="rotate(-8 750 5)"/><use href="#eucalyptus-leaf" x="840" y="5" transform="rotate(12 840 5)"/><use href="#eucalyptus-leaf" x="960" y="5" transform="rotate(-14 960 5)"/><use href="#eucalyptus-leaf" x="1050" y="5" transform="rotate(10 1050 5)"/><use href="#eucalyptus-leaf" x="1140" y="5" transform="rotate(-12 1140 5)"/></g>
+                <use class="fairy-bulb-a" href="#fairy-bulb" x="75" y="42"/><use class="fairy-bulb-b" href="#fairy-bulb" x="150" y="55"/><use class="fairy-bulb-a" href="#fairy-bulb" x="225" y="42"/><use class="fairy-bulb-b" href="#fairy-bulb" x="375" y="42"/><use class="fairy-bulb-a" href="#fairy-bulb" x="450" y="55"/><use class="fairy-bulb-b" href="#fairy-bulb" x="525" y="42"/><use class="fairy-bulb-a" href="#fairy-bulb" x="675" y="42"/><use class="fairy-bulb-b" href="#fairy-bulb" x="750" y="55"/><use class="fairy-bulb-a" href="#fairy-bulb" x="825" y="42"/><use class="fairy-bulb-b" href="#fairy-bulb" x="975" y="42"/><use class="fairy-bulb-a" href="#fairy-bulb" x="1050" y="55"/><use class="fairy-bulb-b" href="#fairy-bulb" x="1125" y="42"/>
+                <g><use href="#ring-rose-blush" x="35" y="24"/><use href="#babys-breath" x="62" y="34"/><use href="#ring-rose-ivory" x="90" y="40"/><use href="#babys-breath" x="120" y="45"/><use href="#ring-rose-blush" x="150" y="47"/><use href="#babys-breath" x="180" y="45"/><use href="#ring-rose-ivory" x="210" y="40"/><use href="#babys-breath" x="238" y="34"/><use href="#ring-rose-blush" x="265" y="24"/></g>
+                <g><use href="#ring-rose-ivory" x="335" y="24"/><use href="#babys-breath" x="362" y="34"/><use href="#ring-rose-blush" x="390" y="40"/><use href="#babys-breath" x="420" y="45"/><use href="#ring-rose-ivory" x="450" y="47"/><use href="#babys-breath" x="480" y="45"/><use href="#ring-rose-blush" x="510" y="40"/><use href="#babys-breath" x="538" y="34"/><use href="#ring-rose-ivory" x="565" y="24"/></g>
+                <g><use href="#ring-rose-ivory" x="635" y="24"/><use href="#babys-breath" x="662" y="34"/><use href="#ring-rose-blush" x="690" y="40"/><use href="#babys-breath" x="720" y="45"/><use href="#ring-rose-ivory" x="750" y="47"/><use href="#babys-breath" x="780" y="45"/><use href="#ring-rose-blush" x="810" y="40"/><use href="#babys-breath" x="838" y="34"/><use href="#ring-rose-ivory" x="865" y="24"/></g>
+                <g><use href="#ring-rose-blush" x="935" y="24"/><use href="#babys-breath" x="962" y="34"/><use href="#ring-rose-ivory" x="990" y="40"/><use href="#babys-breath" x="1020" y="45"/><use href="#ring-rose-blush" x="1050" y="47"/><use href="#babys-breath" x="1080" y="45"/><use href="#ring-rose-ivory" x="1110" y="40"/><use href="#babys-breath" x="1138" y="34"/><use href="#ring-rose-blush" x="1165" y="24"/></g>
+                <g class="toran-sway-delayed"><line x1="600" y1="10" x2="600" y2="66" stroke="url(#champagne-gold)" stroke-width="2.5"/><use href="#ring-rose-ivory" x="600" y="32"/><use href="#babys-breath" x="583" y="42"/><use href="#babys-breath" x="617" y="42"/><circle cx="585" cy="94" r="24" fill="none" stroke="url(#champagne-gold)" stroke-width="5"/><circle cx="615" cy="94" r="24" fill="none" stroke="url(#rose-gold)" stroke-width="5"/><g transform="translate(573 70) rotate(-25)"><polygon points="-9,0 -5,-6 5,-6 9,0 0,6" fill="url(#diamond-grad)" stroke="#7DD3FC"/><polygon points="-5,4 5,4 3,9 -3,9" fill="url(#champagne-gold)"/></g><g transform="translate(627 70) rotate(25)"><polygon points="-9,0 -5,-6 5,-6 9,0 0,6" fill="url(#diamond-grad)" stroke="#7DD3FC"/><polygon points="-5,4 5,4 3,9 -3,9" fill="url(#rose-gold)"/></g><path class="diamond-sparkle-1" d="M562 56l2-6 2 6 6 2-6 2-2 6-2-6-6-2z" fill="#FFF" stroke="#D4AF37"/><path class="diamond-sparkle-2" d="M636 56l2-6 2 6 6 2-6 2-2 6-2-6-6-2z" fill="#FFF" stroke="#D4AF37"/><path class="diamond-sparkle-3" d="M600 124l1.5-4 1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5z" fill="#D4AF37"/></g>
+                <g class="toran-sway"><line x1="150" y1="47" x2="150" y2="96" stroke="url(#champagne-gold)" stroke-width="1.6"/><use href="#crystal-drop" x="150" y="96"/><line x1="450" y1="47" x2="450" y2="102" stroke="url(#champagne-gold)" stroke-width="1.6"/><use href="#crystal-drop" x="450" y="102"/><line x1="750" y1="47" x2="750" y2="102" stroke="url(#champagne-gold)" stroke-width="1.6"/><use href="#crystal-drop" x="750" y="102"/><line x1="1050" y1="47" x2="1050" y2="96" stroke="url(#champagne-gold)" stroke-width="1.6"/><use href="#crystal-drop" x="1050" y="96"/></g>
+            </svg>
+        </div>
+        <div class="legacy-decoration-garland" aria-hidden="true">
+            <svg viewBox="0 0 1200 185" preserveAspectRatio="xMidYMin slice" role="img">
+                <defs>
+                    <linearGradient id="beam-pink" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#D6AD60" stop-opacity=".55"/><stop offset="65%" stop-color="#A51D3B" stop-opacity=".18"/><stop offset="100%" stop-color="#A51D3B" stop-opacity="0"/></linearGradient>
+                    <linearGradient id="beam-gold" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#F2D58A" stop-opacity=".6"/><stop offset="65%" stop-color="#D6AD60" stop-opacity=".2"/><stop offset="100%" stop-color="#D6AD60" stop-opacity="0"/></linearGradient>
+                    <linearGradient id="beam-violet" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#A9BCA5" stop-opacity=".5"/><stop offset="65%" stop-color="#172B4D" stop-opacity=".15"/><stop offset="100%" stop-color="#172B4D" stop-opacity="0"/></linearGradient>
+                    <radialGradient id="disco-sphere" cx="35%" cy="35%" r="65%"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="45%" stop-color="#E2E8F0"/><stop offset="85%" stop-color="#94A3B8"/><stop offset="100%" stop-color="#475569"/></radialGradient>
+                    <clipPath id="disco-clip"><circle r="22"/></clipPath>
+                    <g id="disco-ball">
+                        <circle r="22" fill="url(#disco-sphere)" stroke="#CBD5E1"/>
+                        <g clip-path="url(#disco-clip)"><g class="disco-facets" stroke="#64748B" stroke-width=".7" opacity=".75">
+                            <path d="M-45-14H45M-45-7H45M-45 0H45M-45 7H45M-45 14H45M-36-24V24M-27-24V24M-18-24V24M-9-24V24M0-24V24M9-24V24M18-24V24M27-24V24"/>
+                        </g><rect x="-11" y="-13" width="6" height="5" fill="#FFF" opacity=".9"/><rect x="4" y="-6" width="7" height="5" fill="#FFF8E1" opacity=".85"/><rect x="-5" y="7" width="6" height="5" fill="#FCE4EC" opacity=".9"/></g>
+                        <path class="sparkle-1" d="M-16-14l2-5 2 5 5 2-5 2-2 5-2-5-5-2z" fill="#FFF"/>
+                        <path class="sparkle-2" d="m16 10 1.5-4 1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5z" fill="#FFD54F"/>
+                    </g>
+                    <g id="stage-light"><rect x="-8" width="16" height="12" rx="3" fill="#2D3731" stroke="#D6AD60" stroke-width="1.2"/><ellipse cy="12" rx="7" ry="2.5" fill="#FFF4C7"/></g>
+                    <g id="sangeet-rose-pink"><circle r="15" fill="#A51D3B"/><circle r="10.5" fill="#E5C98A" stroke="#8E7043" stroke-width="1.5" stroke-dasharray="4 2"/><path d="M-4-2Q0-7 4-2Q6 3 0 5Q-6 3-4-2Z" fill="#6F5735"/></g>
+                    <g id="sangeet-rose-coral"><circle r="14" fill="#5F7191"/><circle r="9.5" fill="#C5D2C0" stroke="#5E785F" stroke-width="1.5" stroke-dasharray="3 2"/><circle r="4" fill="#172B4D"/></g>
+                    <g id="mogra-cluster"><circle cx="-4" r="5" fill="#FFFDF9" stroke="#D8D5C7"/><circle cx="4" r="5" fill="#FFFDF9" stroke="#D8D5C7"/><circle cy="4.5" r="5" fill="#FFFDF9" stroke="#D8D5C7"/><circle r="2.2" fill="#D6AD60"/></g>
+                    <g id="sangeet-leaf"><path d="M0 0C-7 11-6 25 0 34C6 25 7 11 0 0Z" fill="#172B4D"/><path d="M0 3v26" stroke="#5F7191" stroke-width="1.2"/></g>
+                    <g id="gold-bell"><path d="M-6 10C-6 3-3.5 0 0 0s6 3 6 10l3 4H-9z" fill="#D6AD60" stroke="#9D7A3F" stroke-width="1.2"/><circle cy="15" r="2.8" fill="#A51D3B"/></g>
+                </defs>
+                <g style="mix-blend-mode:multiply"><polygon class="spotlight-left" points="180,10 60,185 300,185" fill="url(#beam-pink)"/><polygon class="spotlight-center-left" points="480,10 370,185 590,185" fill="url(#beam-gold)"/><polygon class="spotlight-center-right" points="720,10 610,185 830,185" fill="url(#beam-violet)"/><polygon class="spotlight-right" points="1020,10 900,185 1140,185" fill="url(#beam-pink)"/></g>
+                <circle class="sparkle-2" cx="290" cy="115" r="4" fill="#C78A98"/><circle class="sparkle-1" cx="530" cy="130" r="5" fill="#D6AD60"/><circle class="sparkle-3" cx="675" cy="125" r="4" fill="#5F7191"/><circle class="sparkle-1" cx="915" cy="110" r="4.5" fill="#A51D3B"/>
+                <path d="M0 4h1200" stroke="#172B4D" stroke-width="4.5"/><path d="M0 7h1200" stroke="#D6AD60" stroke-width="2" stroke-dasharray="8 4"/>
+                <use href="#stage-light" x="180" y="4"/><use href="#stage-light" x="480" y="4"/><use href="#stage-light" x="720" y="4"/><use href="#stage-light" x="1020" y="4"/>
+                <path d="M0 10Q150 86 300 10T600 10T900 10T1200 10" fill="none" stroke="#172B4D" stroke-width="2.5"/><path d="M0 14Q150 90 300 14T600 14T900 14T1200 14" fill="none" stroke="#D6AD60" stroke-width="1.5" stroke-dasharray="4 4"/>
+                <g class="toran-sway"><use href="#sangeet-leaf" x="60" y="5" transform="rotate(15 60 5)"/><use href="#sangeet-leaf" x="240" y="5" transform="rotate(12 240 5)"/><use href="#sangeet-leaf" x="360" y="5" transform="rotate(-15 360 5)"/><use href="#sangeet-leaf" x="540" y="5" transform="rotate(-12 540 5)"/><use href="#sangeet-leaf" x="660" y="5" transform="rotate(15 660 5)"/><use href="#sangeet-leaf" x="840" y="5" transform="rotate(12 840 5)"/><use href="#sangeet-leaf" x="960" y="5" transform="rotate(-14 960 5)"/><use href="#sangeet-leaf" x="1140" y="5" transform="rotate(-12 1140 5)"/></g>
+                <use href="#sangeet-rose-pink" x="35" y="26"/><use href="#mogra-cluster" x="62" y="36"/><use href="#sangeet-rose-coral" x="90" y="43"/><use href="#sangeet-rose-pink" x="150" y="50"/><use href="#sangeet-rose-coral" x="210" y="43"/><use href="#mogra-cluster" x="238" y="36"/><use href="#sangeet-rose-pink" x="265" y="26"/>
+                <g class="toran-sway-delayed"><line x1="150" y1="50" x2="150" y2="105" stroke="#D6AD60" stroke-width="2"/><use href="#mogra-cluster" x="150" y="76"/><use href="#gold-bell" x="150" y="98"/></g>
+                <use href="#sangeet-rose-coral" x="335" y="26"/><use href="#mogra-cluster" x="362" y="36"/><use href="#sangeet-rose-pink" x="390" y="43"/><use href="#sangeet-rose-coral" x="450" y="50"/><use href="#sangeet-rose-pink" x="510" y="43"/><use href="#mogra-cluster" x="538" y="36"/><use href="#sangeet-rose-coral" x="565" y="26"/>
+                <g class="toran-sway"><line x1="450" y1="50" x2="450" y2="105" stroke="#D6AD60" stroke-width="2"/><use href="#mogra-cluster" x="450" y="76"/><use href="#gold-bell" x="450" y="98"/></g>
+                <g class="toran-sway"><line x1="300" y1="10" x2="300" y2="75" stroke="#94A3B8" stroke-width="2"/><use href="#disco-ball" x="300" y="88" transform="scale(.75) translate(100 29)"/></g>
+                <g class="toran-sway-delayed"><line x1="600" y1="10" x2="600" y2="92" stroke="#94A3B8" stroke-width="2.5"/><use href="#sangeet-rose-pink" x="600" y="34"/><use href="#mogra-cluster" x="600" y="56"/><use href="#disco-ball" x="600" y="106" transform="scale(1.15) translate(-78 -14)"/></g>
+                <g class="toran-sway"><line x1="900" y1="10" x2="900" y2="75" stroke="#94A3B8" stroke-width="2"/><use href="#disco-ball" x="900" y="88" transform="scale(.75) translate(300 29)"/></g>
+                <use href="#sangeet-rose-coral" x="635" y="26"/><use href="#mogra-cluster" x="662" y="36"/><use href="#sangeet-rose-pink" x="690" y="43"/><use href="#sangeet-rose-coral" x="750" y="50"/><use href="#sangeet-rose-pink" x="810" y="43"/><use href="#mogra-cluster" x="838" y="36"/><use href="#sangeet-rose-coral" x="865" y="26"/>
+                <g class="toran-sway"><line x1="750" y1="50" x2="750" y2="105" stroke="#D6AD60" stroke-width="2"/><use href="#mogra-cluster" x="750" y="76"/><use href="#gold-bell" x="750" y="98"/></g>
+                <use href="#sangeet-rose-pink" x="935" y="26"/><use href="#mogra-cluster" x="962" y="36"/><use href="#sangeet-rose-coral" x="990" y="43"/><use href="#sangeet-rose-pink" x="1050" y="50"/><use href="#sangeet-rose-coral" x="1110" y="43"/><use href="#mogra-cluster" x="1138" y="36"/><use href="#sangeet-rose-pink" x="1165" y="26"/>
+                <g class="toran-sway-delayed"><line x1="1050" y1="50" x2="1050" y2="105" stroke="#D6AD60" stroke-width="2"/><use href="#mogra-cluster" x="1050" y="76"/><use href="#gold-bell" x="1050" y="98"/></g>
+            </svg>
+        </div>
+    </header>
+
+    <main class="relative z-10">
+        <section class="mx-auto max-w-6xl px-4 pb-8 pt-5 sm:px-6 sm:pt-8">
+            <div class="grid items-center gap-7">
+                <div class="order-1 text-center">
+                    <span class="inline-flex items-center gap-2 rounded-full border border-rose/25 bg-rose/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[.2em] text-berry"><span>✦</span> The beginning of forever <span>✦</span></span>
+                    <div class="hero-art mx-auto mt-4 w-full max-w-xs">
+                        <img src="../assets/ring-ceremony.png" alt="Gaurav and Snehill celebrating their ring ceremony" class="h-auto w-full">
+                    </div>
+                    <h1 class="mt-5 font-script text-6xl leading-none text-berry sm:text-8xl">A ring<br><span class="text-rose">to forever!</span></h1>
+                    <p class="mt-5 font-serif text-2xl italic leading-relaxed text-warmText/85 sm:text-3xl">An evening of blessings, joyful promises, family laughter and the sweetest beginning to our forever.</p>
+                    <div class="mt-7 flex flex-wrap items-center justify-center gap-3">
+                        <a href="#details" class="rounded-full bg-berry px-6 py-3 text-sm font-bold text-white shadow-lg shadow-berry/20 transition hover:-translate-y-0.5 hover:bg-plum">View the details</a>
+                        <button onclick="addToCalendar()" class="rounded-full border border-rose/30 bg-white/70 px-6 py-3 text-sm font-bold text-berry transition hover:bg-blush">Save to calendar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="mx-auto mt-9 max-w-2xl text-center">
+                <p class="text-xs font-bold uppercase tracking-[.2em] text-berry/70">Counting down to the celebration</p>
+                <div class="mt-3 grid grid-cols-4 gap-2 sm:gap-4">
+                    <div class="card rounded-2xl p-3"><strong id="cd-days" class="block font-serif text-3xl font-bold text-rose sm:text-4xl">00</strong><span class="text-[10px] font-bold uppercase tracking-wider text-berry/65">Days</span></div>
+                    <div class="card rounded-2xl p-3"><strong id="cd-hours" class="block font-serif text-3xl font-bold text-rose sm:text-4xl">00</strong><span class="text-[10px] font-bold uppercase tracking-wider text-berry/65">Hours</span></div>
+                    <div class="card rounded-2xl p-3"><strong id="cd-minutes" class="block font-serif text-3xl font-bold text-rose sm:text-4xl">00</strong><span class="text-[10px] font-bold uppercase tracking-wider text-berry/65">Minutes</span></div>
+                    <div class="card rounded-2xl p-3"><strong id="cd-seconds" class="block font-serif text-3xl font-bold text-rose sm:text-4xl">00</strong><span class="text-[10px] font-bold uppercase tracking-wider text-berry/65">Seconds</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="details" class="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+            <div class="mb-8 text-center"><span class="text-xs font-bold uppercase tracking-[.2em] text-rose">Save the evening</span><h2 class="mt-1 font-script text-5xl text-berry sm:text-6xl">Join our ring ceremony</h2></div>
+            <div class="grid gap-4 md:grid-cols-3">
+                <div class="card rounded-3xl p-6 text-center"><div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blush text-2xl">💍</div><h3 class="mt-4 font-serif text-2xl font-bold text-berry">The Date</h3><p class="mt-2 font-semibold text-rose">Tuesday, 20th April 2027</p><p class="mt-1 text-sm text-warmText/75">5:30 PM onwards</p></div>
+                <div class="card rounded-3xl p-6 text-center"><div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blush text-2xl">📍</div><h3 class="mt-4 font-serif text-2xl font-bold text-berry">The Venue</h3><p class="mt-2 font-semibold text-rose">Sun Park Hotel &amp; Banquet</p><p class="mt-1 text-sm text-warmText/75">Kalka - Shimla Highway, Zirakpur</p><button onclick="openMapModal()" class="mt-4 rounded-full border border-rose/30 px-4 py-2 text-xs font-bold text-berry hover:bg-blush">View venue map</button></div>
+                <div class="card rounded-3xl p-6 text-center"><div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blush text-2xl">✨</div><h3 class="mt-4 font-serif text-2xl font-bold text-berry">Dress for the moment</h3><p class="mt-2 font-semibold text-rose">Elegant festive colours</p><p class="mt-1 text-sm text-warmText/75">Come ready with your blessings<br>and your brightest smile!</p></div>
+            </div>
+        </section>
+
+        <section id="timeline" class="mx-auto max-w-4xl px-4 py-10 sm:px-6">
+            <div class="mb-10 text-center"><span class="text-xs font-bold uppercase tracking-[.2em] text-rose">A night to remember</span><h2 class="mt-1 font-script text-5xl text-berry sm:text-6xl">Ceremony programme</h2></div>
+            <div class="relative ml-3 space-y-5 border-l-2 border-rose/35 pl-7 sm:ml-8 sm:pl-10">
+                <div class="card relative rounded-2xl p-5 sm:p-6"><span class="absolute -left-[39px] top-6 h-5 w-5 rounded-full border-4 border-ivory bg-gold shadow"></span><span class="text-xs font-bold uppercase tracking-wider text-rose">5:30 PM · Welcome</span><h3 class="mt-1 font-serif text-2xl font-bold text-berry">Blessings &amp; welcome drinks</h3><p class="mt-1 text-sm text-warmText/75">Arrive in your festive best, greet the families and settle in for an evening full of love.</p></div>
+                <div class="card relative rounded-2xl p-5 sm:p-6"><span class="absolute -left-[39px] top-6 h-5 w-5 rounded-full border-4 border-ivory bg-rose shadow"></span><span class="text-xs font-bold uppercase tracking-wider text-rose">6:30 PM · Ring exchange</span><h3 class="mt-1 font-serif text-2xl font-bold text-berry">A promise made official</h3><p class="mt-1 text-sm text-warmText/75">Join us as Gaurav &amp; Snehill exchange rings and begin their beautiful journey together.</p></div>
+                <div class="card relative rounded-2xl p-5 sm:p-6"><span class="absolute -left-[39px] top-6 h-5 w-5 rounded-full border-4 border-ivory bg-peach shadow"></span><span class="text-xs font-bold uppercase tracking-wider text-rose">8:00 PM · Dinner &amp; memories</span><h3 class="mt-1 font-serif text-2xl font-bold text-berry">Celebrate, laugh &amp; feast</h3><p class="mt-1 text-sm text-warmText/75">Raise a toast, share a meal and make memories with the two people we love most.</p></div>
+            </div>
+        </section>
+
+        <section id="dance" class="mx-auto max-w-5xl px-4 py-12 sm:px-6">
+            <div class="card relative overflow-hidden rounded-[2rem] border-2 border-rose/20 p-7 text-center sm:p-12">
+                <div class="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-rose/10 blur-2xl"></div><div class="absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-gold/15 blur-2xl"></div>
+                <span class="relative text-xs font-bold uppercase tracking-[.2em] text-rose">A wish for the happy couple</span>
+                <h2 class="relative mt-2 font-script text-5xl text-berry sm:text-6xl">Send your blessings</h2>
+                <p class="relative mx-auto mt-3 max-w-xl font-serif text-xl text-warmText/80">Tap the button and send a burst of joy to Gaurav &amp; Snehill as they begin this beautiful new chapter.</p>
+                <button onclick="startCelebration()" class="dance-pulse relative mt-7 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-rose to-berry px-7 py-3.5 text-base font-bold text-white shadow-xl transition hover:scale-105 active:scale-95"><span class="text-xl">💍</span> Send blessings!</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="relative z-10 border-t border-rose/20 bg-blush/60 px-4 py-10 text-center">
+        <p class="font-script text-5xl text-berry">#Gaurav di Snehill</p>
+        <p class="mt-1 font-serif text-lg italic text-rose">With love, laughter and a promise of forever</p>
+        <button onclick="copyHashtag()" class="mt-5 rounded-full border border-rose/30 bg-white/60 px-4 py-2 text-xs font-bold text-berry hover:bg-rose hover:text-white">Copy hashtag</button>
+    </footer>
+
+    <div id="map-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-plum/45 p-4 backdrop-blur-sm">
+        <div class="relative w-full max-w-lg rounded-3xl border-2 border-gold/50 bg-ivory p-6 shadow-2xl sm:p-8">
+            <button onclick="closeMapModal()" class="absolute right-4 top-4 h-9 w-9 rounded-full bg-blush text-berry hover:bg-rose hover:text-white">✕</button>
+            <h3 class="font-script text-4xl text-berry">Venue location</h3><p class="mt-1 font-serif text-xl font-bold text-rose">Sun Park Hotel &amp; Banquet</p><p class="mt-1 text-sm text-warmText/75">Kalka - Shimla Highway, Zirakpur</p>
+            <div class="mt-5 overflow-hidden rounded-2xl border border-rose/20 bg-blush p-2 text-center">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3431.9847371466512!2d76.83462447532074!3d30.6625582890212!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390f95a8ba72abfb%3A0xad7ca4fd9467149a!2sSun%20Park%20Hotel%20%26%20Banquet%2C%20Zirakpur%20-%20Chandigarh!5e0!3m2!1sen!2sin!4v1795330694721!5m2!1sen!2sin" width="600" height="450" class="h-64 w-full rounded-xl" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title="Sun Park Hotel and Banquet map"></iframe>
+                <a href="https://maps.app.goo.gl/2JWim4yj58P5MpoJA" target="_blank" rel="noopener noreferrer" class="mt-2 inline-block w-full rounded-xl bg-berry py-2.5 text-sm font-bold text-white hover:bg-plum">Open in Google Maps ↗</a>
+            </div>
+        </div>
+    </div>
+    <div id="toast" class="fixed bottom-5 left-1/2 z-50 max-w-[calc(100%-2rem)] -translate-x-1/2 translate-y-24 rounded-2xl border border-gold/40 bg-berry px-5 py-3 text-center text-sm font-semibold text-white opacity-0 shadow-xl transition-all duration-300"><span id="toast-msg">Done!</span></div>
+
+    <script>
+        function toggleNavigation() {
+            const menu = document.getElementById('mobile-navigation');
+            const button = document.getElementById('menu-toggle');
+            const icon = document.getElementById('menu-icon');
+            const open = !menu.classList.contains('hidden');
+            menu.classList.toggle('hidden', open); menu.classList.toggle('flex', !open);
+            button.setAttribute('aria-expanded', String(!open)); button.setAttribute('aria-label', open ? 'Open navigation menu' : 'Close navigation menu');
+            icon.innerHTML = open ? '<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"></path>' : '<path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"></path>';
+        }
+        function closeNavigation() { document.getElementById('mobile-navigation').classList.add('hidden'); document.getElementById('mobile-navigation').classList.remove('flex'); document.getElementById('menu-toggle').setAttribute('aria-expanded', 'false'); }
+        function createPetals() {
+            const colors = ['#A51D3B', '#D6AD60', '#172B4D', '#C78A98'];
+            for (let i = 0; i < 16; i++) {
+                const petal = document.createElement('span'); petal.className = 'petal'; petal.textContent = i % 2 ? '✦' : '❧';
+                petal.style.left = `${Math.random() * 100}vw`; petal.style.color = colors[i % colors.length]; petal.style.fontSize = `${Math.random() * 10 + 10}px`; petal.style.animationDuration = `${Math.random() * 10 + 12}s`; petal.style.animationDelay = `-${Math.random() * 12}s`; document.getElementById('petal-container').appendChild(petal);
+            }
+        }
+        const targetDate = new Date('2027-04-20T17:30:00+05:30').getTime();
+        function updateCountdown() {
+            const diff = targetDate - Date.now(); const values = diff <= 0 ? [0, 0, 0, 0] : [Math.floor(diff / 86400000), Math.floor(diff % 86400000 / 3600000), Math.floor(diff % 3600000 / 60000), Math.floor(diff % 60000 / 1000)];
+            ['days', 'hours', 'minutes', 'seconds'].forEach((name, index) => { document.getElementById(`cd-${name}`).textContent = String(values[index]).padStart(2, '0'); });
+        }
+        function startCelebration() {
+            if (typeof confetti === 'function') confetti({ particleCount: 90, spread: 85, origin: { y: .65 }, colors: ['#A51D3B', '#172B4D', '#D6AD60', '#C78A98'] });
+            showToast('Your blessings are on their way!');
+        }
+        function showToast(message) { const toast = document.getElementById('toast'); document.getElementById('toast-msg').textContent = message; toast.classList.remove('translate-y-24', 'opacity-0'); setTimeout(() => toast.classList.add('translate-y-24', 'opacity-0'), 3200); }
+        function openMapModal() { const modal = document.getElementById('map-modal'); modal.classList.remove('hidden'); modal.classList.add('flex'); }
+        function closeMapModal() { const modal = document.getElementById('map-modal'); modal.classList.add('hidden'); modal.classList.remove('flex'); }
+        function copyHashtag() {
+            if (!navigator.clipboard) { showToast('Use #Gaurav di Snehill'); return; }
+            navigator.clipboard.writeText('#Gaurav di Snehill').then(() => showToast('Hashtag copied!')).catch(() => showToast('Use #Gaurav di Snehill'));
+        }
+        function addToCalendar() {
+            const event = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'BEGIN:VEVENT', 'SUMMARY:#Gaurav di Snehill - Ring Ceremony', 'DTSTART:20270420T120000Z', 'DTEND:20270420T173000Z', 'LOCATION:Sun Park Hotel and Banquet, Kalka - Shimla Highway, Zirakpur', 'DESCRIPTION:Join us as Gaurav and Snehill exchange rings and begin their journey together!', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+            const link = document.createElement('a'); link.href = URL.createObjectURL(new Blob([event], { type: 'text/calendar' })); link.download = 'Gaurav-di-Snehill-Ring-Ceremony.ics'; link.click(); showToast('Calendar invite downloaded!');
+        }
+        function setupTemporaryAuth() {
+            const authForm = document.getElementById('auth-form');
+            const authError = document.getElementById('auth-error');
+
+            if (window.matchMedia('(min-width: 600px)').matches ||
+                sessionStorage.getItem('ring-invite-authenticated') === 'true') {
+                document.body.classList.remove('auth-locked');
+                return;
+            }
+
+            authForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const formData = new FormData(authForm);
+                const username = formData.get('username');
+                const password = formData.get('password');
+
+                if (username === 'gaurav' && password === 'snehill') {
+                    sessionStorage.setItem('ring-invite-authenticated', 'true');
+                    document.body.classList.remove('auth-locked');
+                    authForm.reset();
+                    return;
+                }
+
+                authError.textContent = 'Incorrect username or password.';
+            });
+        }
+        window.addEventListener('DOMContentLoaded', () => {
+            setupTemporaryAuth();
+            createPetals();
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        });
+    </script>
+</body>
+</html>
