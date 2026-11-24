@@ -1029,7 +1029,7 @@
           <span class="hero-weds">weds</span>
           <span>Snehill</span>
         </h1>
-        <a class="scroll-hint" href="#save-the-date">Scroll to Explore ↓</a>
+        <a id="scroll-to-date" class="scroll-hint" href="#save-the-date">Scroll to Explore ↓</a>
       </div>
     </section>
 
@@ -1151,6 +1151,19 @@
   </div>
 
   <script>
+    const scrollToDateLink = document.getElementById('scroll-to-date');
+    const saveTheDateSection = document.getElementById('save-the-date');
+
+    scrollToDateLink.addEventListener('click', (event) => {
+      event.preventDefault();
+      saveTheDateSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    if (window.location.hash === '#save-the-date') {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+
     const authForm = document.getElementById('auth-form');
     const authError = document.getElementById('auth-error');
 
