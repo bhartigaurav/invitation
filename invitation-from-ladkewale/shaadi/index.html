@@ -3,8 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="color-scheme" content="light" />
+  <meta name="color-scheme" content="only light" />
   <meta name="theme-color" content="#fdf8f0" />
+  <script>
+    (() => {
+      const allowed = new URLSearchParams(window.location.search).get('key') === 'ladkeO8wCvsGhF3Lwale';
+      if (!allowed) {
+        document.documentElement.classList.add('key-missing');
+        document.documentElement.style.visibility = 'hidden';
+      }
+    })();
+  </script>
   <title>Gaurav &amp; Snehill — Wedding Invitation</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,16 +55,11 @@
       overflow: hidden;
     }
 
-    body.auth-locked > *:not(#auth-gate):not(#invite-preloader):not(.desktop-only-notice) {
-      display: none !important;
-    }
-
-    #auth-gate,
     .desktop-only-notice {
       display: none;
     }
 
-    .preloader-screen {
+.preloader-screen {
       position: fixed;
       inset: 0;
       z-index: 999;
@@ -201,93 +205,6 @@
         display: none;
         animation: none;
       }
-    }
-
-    body.auth-locked #auth-gate {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      min-height: 100vh;
-      padding: 24px;
-      background:
-        radial-gradient(at 15% 15%, rgba(222, 107, 36, 0.12), transparent 50%),
-        radial-gradient(at 85% 80%, rgba(184, 93, 59, 0.12), transparent 50%),
-        #fdf8f0;
-    }
-
-    .auth-card {
-      width: min(100%, 384px);
-      padding: 32px;
-      text-align: center;
-      background: rgba(255, 251, 245, 0.96);
-      border: 1.5px solid rgba(184, 93, 59, 0.28);
-      border-radius: 24px;
-      box-shadow: 0 12px 32px rgba(60, 36, 21, 0.12);
-    }
-
-    .auth-card h1 {
-      color: var(--terracotta-deep);
-      font-family: 'Great Vibes', 'Brush Script MT', cursive;
-      font-size: 2.5rem;
-      font-weight: 400;
-    }
-
-    .auth-card p {
-      margin: 6px 0 20px;
-      color: var(--ink-soft);
-      font-size: 1.15rem;
-    }
-
-    .auth-card label {
-      display: block;
-      margin: 12px 0 5px;
-      color: var(--terracotta-deep);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-align: left;
-    }
-
-    .auth-card input {
-      width: 100%;
-      padding: 11px 14px;
-      border: 1px solid rgba(184, 93, 59, 0.35);
-      border-radius: 12px;
-      background: #fdf8f0;
-      color: var(--ink);
-      font: inherit;
-      outline: none;
-    }
-
-    .auth-card input:focus {
-      border-color: var(--terracotta);
-      box-shadow: 0 0 0 3px rgba(184, 93, 59, 0.14);
-    }
-
-    .auth-card button {
-      width: 100%;
-      margin-top: 16px;
-      padding: 12px 16px;
-      border: 0;
-      border-radius: 12px;
-      background: var(--terracotta-deep);
-      color: #fffaf4;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .auth-card button:hover {
-      background: var(--terracotta);
-    }
-
-    .auth-error {
-      min-height: 1.25rem;
-      margin: 10px 0 0 !important;
-      color: #a13e25 !important;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.8rem !important;
     }
 
     /* Mobile-Only Frame (Full width on phones, centered phone viewport on desktop) */
@@ -1024,32 +941,14 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      margin-left: 12px;
-      padding-left: 24px;
-      border-left: 2px solid rgba(184, 93, 59, 0.35);
+      width: min(100%, 520px);
+      margin: 0 auto;
     }
 
     .wedding-itinerary-event {
       position: relative;
       padding: 10px 12px;
     }
-
-    .wedding-itinerary-event::before {
-      position: absolute;
-      top: 20px;
-      left: -34px;
-      width: 16px;
-      height: 16px;
-      border: 4px solid var(--canvas-bg);
-      border-radius: 50%;
-      background: var(--saffron);
-      box-shadow: 0 2px 6px rgba(60, 36, 21, 0.18);
-      content: '';
-    }
-
-    .wedding-itinerary-event:nth-child(2)::before { background: var(--terracotta); }
-    .wedding-itinerary-event:nth-child(3)::before { background: #d4a33f; }
-    .wedding-itinerary-event:nth-child(4)::before { background: var(--terracotta-deep); }
 
     .wedding-itinerary-event h4 {
       margin: 3px 0 0;
@@ -1066,16 +965,15 @@
     }
 
     .invitation-footer {
-      position: absolute;
-      right: 0;
-      bottom: 4px;
-      left: 0;
+      position: relative;
       z-index: 2;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 12px;
-      padding: 0 20px;
+      width: 100%;
+      margin-top: 24px;
+      padding: 20px 20px 28px;
       text-align: center;
     }
 
@@ -1089,7 +987,8 @@
     }
 
     #add-to-calendar {
-      margin-bottom: 16px;
+      display: flex;
+      margin: 30px auto 0;
     }
 
     .copy-hashtag-status {
@@ -1141,8 +1040,8 @@
         box-shadow: none;
       }
 
-      #auth-gate,
-      body > * {
+      .mobile-shell,
+      #invite-preloader {
         display: none !important;
       }
 
@@ -1168,14 +1067,121 @@
         filter: drop-shadow(0 14px 18px rgba(60, 36, 21, 0.14));
       }
     }
-  </style>
+  
+    .welcome-screen {
+      display: none;
+    }
+
+    @media (max-width: 599px) {
+      .welcome-screen.is-visible {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: #241a16;
+      }
+
+      .welcome-video {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .welcome-enter {
+        position: absolute;
+        top: 65%;
+        left: 50%;
+        z-index: 1;
+        min-height: 3.5rem;
+        padding: 0.85rem 1.6rem;
+        transform: translate(-50%, -50%);
+        border: 1px solid rgba(134, 56, 28, 0.24);
+        border-radius: 999px;
+        background: linear-gradient(135deg, #b85d3b, #86381c);
+        box-shadow: 0 10px 24px rgba(134, 56, 28, 0.32);
+        color: #fffaf4;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .welcome-enter[hidden] {
+        display: none !important;
+      }
+
+      .welcome-enter:focus-visible {
+        outline: 3px solid #de6b24;
+        outline-offset: 4px;
+      }
+    }
+
+    .missing-key-notice {
+      display: none;
+    }
+
+    @media (max-width: 599px) {
+      html.key-missing {
+        visibility: visible !important;
+      }
+
+      html.key-missing body > *:not(.missing-key-notice) {
+        display: none !important;
+      }
+
+      html.key-missing .missing-key-notice {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25rem;
+        box-sizing: border-box;
+        min-height: 100vh;
+        padding: 1.5rem;
+        background: #f8eedf;
+        color: #6b3522;
+        font-family: Georgia, serif;
+        font-size: clamp(1.1rem, 4vw, 1.4rem);
+        line-height: 1.45;
+        text-align: center;
+      }
+
+      html.key-missing .missing-key-notice img {
+        display: block;
+        width: min(320px, 78vw);
+        max-height: 48vh;
+        margin-bottom: 1rem;
+        object-fit: contain;
+      }
+
+      html.key-missing .missing-key-notice p {
+        max-width: 28rem;
+        margin: 0;
+      }
+    }
+</style>
 </head>
-<body class="auth-locked artwork-loading">
+<body class="artwork-loading">
+  <div class="missing-key-notice" role="status" aria-label="Invitation link required">
+    <img src="../../assets/sitcker-transparent.png" alt="Gaurav and Snehill wedding illustration">
+    <p>Please scan the QR Code to Open this Invite.</p>
+    <p>This Page can not be opened without a key.</p>
+  </div>
+
   <div id="invite-preloader" class="preloader-screen" aria-live="polite" aria-label="Loading invitation">
     <div class="preloader-fireworks" aria-hidden="true"><span></span><span></span><span></span></div>
     <div class="preloader-inner">
       <img
-        src="assets/folded-hands-logo.png"
+        src="../../assets/folded-hands-logo.png"
         alt="Gaurav and Snehill"
         class="preloader-img"
         loading="eager"
@@ -1189,24 +1195,18 @@
     </div>
   </div>
 
-  <div id="auth-gate" role="dialog" aria-labelledby="auth-title">
-    <form id="auth-form" class="auth-card">
-      <h1 id="auth-title">Wedding Invitation</h1>
-      <p>Enter the invitation details to continue</p>
-      <label for="auth-username">Username</label>
-      <input id="auth-username" name="username" type="text" autocomplete="username" required />
-      <label for="auth-password">Password</label>
-      <input id="auth-password" name="password" type="password" autocomplete="current-password" required />
-      <p id="auth-error" class="auth-error" role="alert"></p>
-      <button type="submit">Open Invitation</button>
-    </form>
+  <div id="welcome-screen" class="welcome-screen" role="dialog" aria-modal="true" aria-label="Wedding invitation welcome video">
+    <video id="welcome-video" class="welcome-video" autoplay muted playsinline webkit-playsinline preload="auto" poster="../../assets/logo.png" aria-label="Gaurav and Snehill wedding invitation video">
+      <source src="../../assets/into-video.mp4" type="video/mp4" />
+    </video>
+    <button id="welcome-enter" class="welcome-enter" type="button" hidden>Aaiye Shamil Hote Hain</button>
   </div>
 
   <main class="mobile-shell">
     <header class="wedding-header" aria-label="Wedding invitation header">
       <div class="header-bar">
         <a href="#home" class="header-brand" aria-label="Go to invitation home">
-          <img src="assets/logo.png" alt="Gaurav and Snehill" class="header-logo" />
+          <img src="../../assets/logo.png" alt="Gaurav and Snehill" class="header-logo" />
           <span>
             <span class="header-names">Gaurav &amp; Snehill</span>
             <span class="header-kicker">Wedding Invitation</span>
@@ -1221,7 +1221,7 @@
       </div>
     </header>
     <audio id="background-music" loop preload="none" hidden>
-      <source src="assets/punjabi-dhol.mp3" type="audio/mpeg" />
+      <source src="../../assets/background-invite.mp3" type="audio/mpeg" />
     </audio>
 
     <!-- Side Floral Arches & Stepped Brass Bells -->
@@ -1273,7 +1273,7 @@
 
     <!-- Band 1: Temple & Bells -->
     <section id="home" class="scene-band band-hero">
-      <img src="images/panel-1.png" alt="Sacred Temple Backdrop" class="scene-art" loading="eager" fetchpriority="high" decoding="async" />
+      <img src="../../images/panel-1.png" alt="Sacred Temple Backdrop" class="scene-art" loading="eager" fetchpriority="high" decoding="async" />
       <div class="overlay-content reveal">
         <h1 class="hero-names">
           <span>Gaurav</span>
@@ -1286,7 +1286,7 @@
 
     <!-- Band 2: Couple Walking Down the Floral Aisle -->
     <section class="scene-band band-aisle">
-      <img src="images/panel-2.png" alt="Bride and groom walking toward mandap" class="scene-art" loading="eager" decoding="async" />
+      <img src="../../images/panel-2.png" alt="Bride and groom walking toward mandap" class="scene-art" loading="eager" decoding="async" />
       <div id="save-the-date" class="between-images-date" aria-label="Save the date: 21 April 2027">
         <span class="save-the-date-label">Save the Date</span>
         <span class="save-the-date-day">21 April 2027</span>
@@ -1316,7 +1316,7 @@
 
     <!-- Band 3: Chhatri Pavilions & Peacocks -->
     <section id="couple" class="scene-band band-chhatri">
-      <img src="images/panel-3.png" alt="Chhatri pavilions and peacocks" class="scene-art" loading="eager" decoding="async" />
+      <img src="../../images/panel-3.png" alt="Chhatri pavilions and peacocks" class="scene-art" loading="eager" decoding="async" />
       <div class="overlay-content reveal invitation-copy">
         <h2 class="invitation-hosts">Raj &amp; Sewa Ram Bharti</h2>
         <p class="invitation-request">Request the pleasure of your company at the <br>wedding ceremony of their beloved grandson:</p>
@@ -1341,23 +1341,23 @@
 
     <!-- Band 4: Terrace Courtyard — Timeline -->
     <section id="timeline" class="scene-band band-terrace">
-      <img src="images/panel-4.png" alt="Sandstone terrace courtyard" class="scene-art" loading="eager" decoding="async" />
+      <img src="../../images/panel-4.png" alt="Sandstone terrace courtyard" class="scene-art" loading="eager" decoding="async" />
       <div class="terrace-flow-content reveal">
         <h2 class="section-heading timeline-heading">Wedding Celebration Timeline</h2>
 
         <div class="timeline-stack">
           <p class="timeline-instruction">Tap an event card to open its invitation.</p>
-          <a class="glass-card glass-card-link" href="inv-a/Gaurav di Snehill - Ring Ceremony Invite.html">
+          <a class="glass-card glass-card-link" href="Ring-Ceremony.html?key=ladkeO8wCvsGhF3Lwale">
             <div class="card-tag">20 April 2027</div>
             <h3>Ring Ceremony</h3>
             <p>A joyful celebration of love, blessings &amp; family</p>
           </a>
-          <a class="glass-card glass-card-link" href="inv-a/Gaurav di Snehill - Ladies Sangeet Invite.html">
+          <a class="glass-card glass-card-link" href="Ladies-Sangeet.html?key=ladkeO8wCvsGhF3Lwale">
             <div class="card-tag">20 April 2027</div>
             <h3>Mehendi &amp; Ladies Sangeet</h3>
             <p>An evening of music, dance &amp; celebration</p>
           </a>
-          <a class="glass-card glass-card-link" href="inv-a/Gaurav di Snehill - Haldi Ceremony Invite.html">
+          <a class="glass-card glass-card-link" href="Haldi-Ceremony.html?key=ladkeO8wCvsGhF3Lwale">
             <div class="card-tag">21 April 2027</div>
             <h3>Haldi</h3>
             <p>Sunlit marigold blessings, folk songs &amp; family warmth</p>
@@ -1373,7 +1373,7 @@
     </section>
 
     <div class="scene-band band-finale">
-      <img src="images/panel-5.png" alt="Decorated elephant in a palace garden" class="scene-art" loading="eager" decoding="async" />
+      <img src="../../images/panel-5.png" alt="Decorated elephant in a palace garden" class="scene-art" loading="eager" decoding="async" />
       <div class="finale-itinerary">
         <div class="wedding-itinerary">
           <div class="wedding-itinerary-heading">
@@ -1387,10 +1387,10 @@
             <div class="glass-card wedding-itinerary-event"><div class="card-tag">Sacred vows</div><h4>Pheras &amp; wedding vows</h4><p>Celebrate their sacred vows and blessings.</p></div>
             <div class="glass-card wedding-itinerary-event"><div class="card-tag">Farewell</div><h4>Vidai</h4><p>A heartfelt farewell as the newlyweds begin their forever journey together.</p></div>
           </div>
+          <button id="add-to-calendar" class="copy-hashtag-button" type="button">Add to calendar</button>
         </div>
       </div>
       <footer class="invitation-footer">
-        <button id="add-to-calendar" class="copy-hashtag-button" type="button">Add to calendar</button>
         <p class="wedding-hashtag">#GauravdiSnehill</p>
         <button id="copy-hashtag" class="copy-hashtag-button" type="button">Copy hashtag</button>
         <p id="copy-hashtag-status" class="copy-hashtag-status" role="status" aria-live="polite"></p>
@@ -1415,7 +1415,7 @@
   </div>
 
   <div class="desktop-only-notice" aria-label="Mobile viewing notice">
-    <img src="assets/sitcker-transparent.png" alt="Gaurav and Snehill wedding illustration" />
+    <img src="../../assets/sitcker-transparent.png" alt="Gaurav and Snehill wedding illustration" />
     <p>This invitation is designed for mobile screens.</p>
     <p>Please open it on your phone.</p>
   </div>
@@ -1424,6 +1424,12 @@
     const preloader = document.getElementById('invite-preloader');
     const preloaderStatus = document.getElementById('preloader-status');
     const preloaderContinue = document.getElementById('preloader-continue');
+    const welcomeScreen = document.getElementById('welcome-screen');
+    const welcomeEnter = document.getElementById('welcome-enter');
+    const welcomeVideo = document.getElementById('welcome-video');
+    const backgroundMusic = document.getElementById('background-music');
+    const audioToggle = document.getElementById('audio-toggle');
+    const audioStatus = document.getElementById('audio-status');
     const sceneImages = [...document.querySelectorAll('.scene-art')];
     const copyHashtagButton = document.getElementById('copy-hashtag');
     const copyHashtagStatus = document.getElementById('copy-hashtag-status');
@@ -1482,8 +1488,28 @@
 
     function dismissPreloader() {
       preloader.classList.add('is-done');
-      document.body.classList.remove('artwork-loading');
+      if (!window.matchMedia('(max-width: 599px)').matches) {
+        document.body.classList.remove('artwork-loading');
+        return;
+      }
+      welcomeScreen.classList.add('is-visible');
+      welcomeVideo.currentTime = 0;
+      playWelcomeVideo();
     }
+
+    function playWelcomeVideo() {
+      welcomeVideo.defaultMuted = true;
+      welcomeVideo.muted = true;
+      welcomeVideo.play().catch(showWelcomeButton);
+    }
+
+    function showWelcomeButton() {
+      welcomeEnter.hidden = false;
+      welcomeEnter.focus({ preventScroll: true });
+    }
+
+    welcomeVideo.addEventListener('ended', showWelcomeButton, { once: true });
+    welcomeVideo.addEventListener('error', showWelcomeButton, { once: true });
 
     preloaderContinue.addEventListener('click', dismissPreloader);
 
@@ -1524,28 +1550,6 @@
       window.scrollTo({ top: 0, behavior: 'instant' });
     }
 
-    const authForm = document.getElementById('auth-form');
-    const authError = document.getElementById('auth-error');
-
-    if (sessionStorage.getItem('wedding-main-invite-authenticated') === 'true') {
-      document.body.classList.remove('auth-locked');
-    }
-
-    authForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const formData = new FormData(authForm);
-      const username = formData.get('username');
-      const password = formData.get('password');
-
-      if (username === 'gaurav' && password === 'snehill') {
-        sessionStorage.setItem('wedding-main-invite-authenticated', 'true');
-        document.body.classList.remove('auth-locked');
-        authForm.reset();
-        return;
-      }
-
-      authError.textContent = 'Incorrect username or password.';
-    });
 
       const venueModal = document.getElementById('venue-modal');
       const venueNavigate = document.getElementById('venue-navigate');
@@ -1604,10 +1608,6 @@
     updateWeddingCountdown();
     setInterval(updateWeddingCountdown, 1000);
 
-    const backgroundMusic = document.getElementById('background-music');
-    const audioToggle = document.getElementById('audio-toggle');
-    const audioStatus = document.getElementById('audio-status');
-
     function updateAudioControl(isPlaying) {
       audioToggle.classList.toggle('is-playing', isPlaying);
       audioToggle.setAttribute('aria-pressed', String(isPlaying));
@@ -1615,18 +1615,50 @@
       audioStatus.textContent = isPlaying ? 'Background music is playing.' : 'Background music paused.';
     }
 
+    let musicPlayPending = false;
+
+    function removePlaybackGestureListeners() {
+      document.removeEventListener('pointerdown', startMusicAfterGesture);
+      document.removeEventListener('keydown', startMusicAfterGesture);
+    }
+
+    function startMusicAfterGesture(event) {
+      if (event.target instanceof Element && event.target.closest('#audio-toggle')) return;
+      startBackgroundMusic();
+    }
+
+    async function startBackgroundMusic() {
+      if (!backgroundMusic.paused || musicPlayPending) return;
+
+      backgroundMusic.volume = 0.75;
+      musicPlayPending = true;
+      try {
+        await backgroundMusic.play();
+        updateAudioControl(true);
+        removePlaybackGestureListeners();
+      } catch {
+        updateAudioControl(false);
+        audioStatus.textContent = 'Tap anywhere to start background music.';
+        document.addEventListener('pointerdown', startMusicAfterGesture);
+        document.addEventListener('keydown', startMusicAfterGesture);
+      } finally {
+        musicPlayPending = false;
+      }
+    }
+
+    welcomeEnter.addEventListener('click', () => {
+      startBackgroundMusic();
+      welcomeVideo.pause();
+      welcomeScreen.classList.remove('is-visible');
+      document.body.classList.remove('artwork-loading');
+    });
+
     backgroundMusic.addEventListener('play', () => updateAudioControl(true));
     backgroundMusic.addEventListener('pause', () => updateAudioControl(false));
 
-    audioToggle.addEventListener('click', async () => {
+    audioToggle.addEventListener('click', () => {
       if (backgroundMusic.paused) {
-        try {
-          await backgroundMusic.play();
-          updateAudioControl(true);
-        } catch {
-          updateAudioControl(false);
-          audioStatus.textContent = 'Background music could not be played. Please try again.';
-        }
+        startBackgroundMusic();
         return;
       }
 
