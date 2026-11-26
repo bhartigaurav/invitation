@@ -1630,6 +1630,7 @@
     async function startBackgroundMusic() {
       if (!backgroundMusic.paused || musicPlayPending) return;
 
+      backgroundMusic.volume = 0.75;
       musicPlayPending = true;
       try {
         await backgroundMusic.play();
