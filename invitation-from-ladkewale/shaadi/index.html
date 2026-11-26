@@ -8,7 +8,7 @@
   <title>Gaurav &amp; Snehill — Wedding Invitation</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       color-scheme: only light;
@@ -59,8 +59,6 @@
       position: fixed;
       inset: 0;
       z-index: 999;
-      max-width: 480px;
-      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -76,12 +74,58 @@
     }
 
     .preloader-inner {
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 14px;
       padding: 24px;
       text-align: center;
+    }
+
+    .preloader-fireworks {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .preloader-fireworks span {
+      position: absolute;
+      top: 38%;
+      left: 24%;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      color: #de6b24;
+      background: currentColor;
+      box-shadow: 0 -40px currentColor, 0 40px currentColor, 40px 0 currentColor, -40px 0 currentColor,
+        28px -28px currentColor, -28px -28px currentColor, 28px 28px currentColor, -28px 28px currentColor,
+        0 -58px currentColor, 0 58px currentColor, 58px 0 currentColor, -58px 0 currentColor;
+      opacity: 0;
+      animation: preloaderFirework 2.8s ease-out infinite;
+    }
+
+    .preloader-fireworks span:nth-child(2) {
+      top: 27%;
+      left: 76%;
+      color: #b85d3b;
+      animation-delay: 0.9s;
+    }
+
+    .preloader-fireworks span:nth-child(3) {
+      top: 70%;
+      left: 72%;
+      color: #d4a33f;
+      animation-delay: 1.8s;
+    }
+
+    @keyframes preloaderFirework {
+      0%, 12% { opacity: 0; transform: scale(0.12); }
+      22% { opacity: 1; }
+      58% { opacity: 0; transform: scale(1); }
+      100% { opacity: 0; transform: scale(1); }
     }
 
     .preloader-img {
@@ -107,17 +151,22 @@
 
     .preloader-title {
       color: var(--terracotta-deep);
-      font-family: 'Great Vibes', 'Brush Script MT', cursive;
+      font-family: 'Cinzel', 'Cormorant Garamond', serif;
       font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       line-height: 1.1;
     }
 
     .preloader-subtitle {
-      max-width: 290px;
+      max-width: none;
+      white-space: nowrap;
       color: var(--ink-soft);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.82rem;
-      line-height: 1.5;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(0.82rem, 3.8vw, 1.12rem);
+      font-style: italic;
+      font-weight: 600;
+      line-height: 1.2;
     }
 
     .preloader-status {
@@ -145,6 +194,11 @@
       }
 
       .preloader-img {
+        animation: none;
+      }
+
+      .preloader-fireworks span {
+        display: none;
         animation: none;
       }
     }
@@ -250,8 +304,8 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(253, 248, 240, 0.94);
-      border-bottom: 1px solid rgba(184, 93, 59, 0.18);
+      background: rgba(248, 239, 220, 0.96);
+      border-bottom: 1px solid rgba(181, 139, 83, 0.24);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
     }
@@ -277,7 +331,7 @@
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      border: 2px solid rgba(184, 93, 59, 0.42);
+      border: 2px solid rgba(201, 149, 79, 0.52);
       object-fit: cover;
       box-shadow: 0 4px 12px rgba(60, 36, 21, 0.12);
     }
@@ -287,7 +341,7 @@
       font-size: 1.15rem;
       font-weight: 600;
       line-height: 1.05;
-      color: var(--terracotta-deep);
+      color: #70491f;
     }
 
     .header-kicker {
@@ -298,7 +352,7 @@
       font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--terracotta);
+      color: #9b6c35;
     }
 
     .audio-toggle {
@@ -321,9 +375,10 @@
     }
 
     .audio-toggle.is-playing {
-      border-color: #9c5a27;
-      background: #d69c36;
-      color: var(--terracotta-deep);
+      border-color: #9b6c35;
+      background: #c9954f;
+      color: #fffaf4;
+      box-shadow: 0 4px 12px rgba(123, 78, 31, 0.24);
     }
 
     .visually-hidden {
@@ -831,22 +886,27 @@
     }
 
     .invitation-special {
-      margin-top: 42%;
+      width: fit-content;
+      max-width: 100%;
+      margin: 42% auto 0;
+      text-shadow: 0 2px 12px rgba(253, 248, 240, 0.95);
     }
 
     .invitation-special-label {
-      color: var(--terracotta);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.65rem;
+      color: #70491f;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(0.78rem, 3.2vw, 0.92rem);
       font-weight: 600;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.03em;
     }
 
     .invitation-special-names {
       margin-top: 3px;
-      color: var(--terracotta-deep);
-      font-size: clamp(0.82rem, 3.6vw, 1rem);
+      color: #563614;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(0.58rem, 2.6vw, 0.72rem);
       font-weight: 600;
+      letter-spacing: 0.025em;
     }
 
     .invitation-residence {
@@ -925,6 +985,86 @@
       line-height: 1.5;
     }
 
+    .wedding-itinerary {
+      margin-top: 0;
+    }
+
+    .finale-itinerary {
+      position: absolute;
+      top: 10%;
+      right: 0;
+      left: 0;
+      z-index: 2;
+      padding: 0 20px;
+    }
+
+    .wedding-itinerary-heading {
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .wedding-itinerary-kicker {
+      color: var(--terracotta);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .wedding-itinerary-title {
+      color: var(--terracotta-deep);
+      font-family: 'Great Vibes', 'Brush Script MT', cursive;
+      font-size: clamp(2.2rem, 9vw, 2.8rem);
+      font-weight: 500;
+      line-height: 1.1;
+    }
+
+    .wedding-itinerary-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-left: 12px;
+      padding-left: 24px;
+      border-left: 2px solid rgba(184, 93, 59, 0.35);
+    }
+
+    .wedding-itinerary-event {
+      position: relative;
+      padding: 10px 12px;
+    }
+
+    .wedding-itinerary-event::before {
+      position: absolute;
+      top: 20px;
+      left: -34px;
+      width: 16px;
+      height: 16px;
+      border: 4px solid var(--canvas-bg);
+      border-radius: 50%;
+      background: var(--saffron);
+      box-shadow: 0 2px 6px rgba(60, 36, 21, 0.18);
+      content: '';
+    }
+
+    .wedding-itinerary-event:nth-child(2)::before { background: var(--terracotta); }
+    .wedding-itinerary-event:nth-child(3)::before { background: #d4a33f; }
+    .wedding-itinerary-event:nth-child(4)::before { background: var(--terracotta-deep); }
+
+    .wedding-itinerary-event h4 {
+      margin: 3px 0 0;
+      color: var(--terracotta-deep);
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .wedding-itinerary-event p {
+      margin-top: 4px;
+      color: var(--ink-soft);
+      font-size: 0.78rem;
+      line-height: 1.25;
+    }
+
     .invitation-footer {
       position: absolute;
       right: 0;
@@ -941,11 +1081,15 @@
 
     .wedding-hashtag {
       color: var(--terracotta-deep);
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Cinzel', 'Cormorant Garamond', serif;
       font-size: clamp(1.05rem, 5vw, 1.3rem);
-      font-weight: 700;
-      letter-spacing: 0.06em;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       text-shadow: 0 2px 10px rgba(253, 248, 240, 0.96);
+    }
+
+    #add-to-calendar {
+      margin-bottom: 16px;
     }
 
     .copy-hashtag-status {
@@ -1028,6 +1172,7 @@
 </head>
 <body class="auth-locked artwork-loading">
   <div id="invite-preloader" class="preloader-screen" aria-live="polite" aria-label="Loading invitation">
+    <div class="preloader-fireworks" aria-hidden="true"><span></span><span></span><span></span></div>
     <div class="preloader-inner">
       <img
         src="assets/folded-hands-logo.png"
@@ -1229,7 +1374,23 @@
 
     <div class="scene-band band-finale">
       <img src="images/panel-5.png" alt="Decorated elephant in a palace garden" class="scene-art" loading="eager" decoding="async" />
+      <div class="finale-itinerary">
+        <div class="wedding-itinerary">
+          <div class="wedding-itinerary-heading">
+            <h3 class="wedding-itinerary-title">Wedding Itinerary</h3>
+            <p class="wedding-itinerary-kicker">21 April 2027</p>
+          </div>
+          <div class="wedding-itinerary-timeline">
+            <div class="glass-card wedding-itinerary-event"><div class="card-tag">Welcome</div><h4>Baraat arrival &amp; family welcome</h4><p>Welcome both families and guests.</p></div>
+            <div class="glass-card wedding-itinerary-event"><div class="card-tag">Celebration</div><h4>Varmala ceremony</h4><p>Gaurav and Snehill exchange garlands.</p></div>
+            <div class="glass-card wedding-itinerary-event"><div class="card-tag">Dinner</div><h4>Dinner &amp; celebration</h4><p>Enjoy dinner and celebrate together.</p></div>
+            <div class="glass-card wedding-itinerary-event"><div class="card-tag">Sacred vows</div><h4>Pheras &amp; wedding vows</h4><p>Celebrate their sacred vows and blessings.</p></div>
+            <div class="glass-card wedding-itinerary-event"><div class="card-tag">Farewell</div><h4>Vidai</h4><p>A heartfelt farewell as the newlyweds begin their forever journey together.</p></div>
+          </div>
+        </div>
+      </div>
       <footer class="invitation-footer">
+        <button id="add-to-calendar" class="copy-hashtag-button" type="button">Add to calendar</button>
         <p class="wedding-hashtag">#GauravdiSnehill</p>
         <button id="copy-hashtag" class="copy-hashtag-button" type="button">Copy hashtag</button>
         <p id="copy-hashtag-status" class="copy-hashtag-status" role="status" aria-live="polite"></p>
@@ -1274,6 +1435,35 @@
       } catch {
         copyHashtagStatus.textContent = 'Unable to copy automatically. Please select the hashtag and copy it.';
       }
+    });
+
+    document.getElementById('add-to-calendar').addEventListener('click', () => {
+      const calendarEvent = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Gaurav and Snehill//Wedding Invitation//EN',
+        'CALSCALE:GREGORIAN',
+        'METHOD:PUBLISH',
+        'BEGIN:VEVENT',
+        'UID:gaurav-snehill-wedding-20270421@wedding',
+        'DTSTAMP:20261126T000000Z',
+        'DTSTART:20270421T143000Z',
+        'DTEND:20270421T173000Z',
+        'SUMMARY:Gaurav & Snehill - Wedding Ceremony',
+        'LOCATION:Aashirwad Banquet\\, Zirakpur',
+        'DESCRIPTION:Wedding ceremony of Gaurav and Snehill.',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+      const calendarUrl = URL.createObjectURL(new Blob([calendarEvent], { type: 'text/calendar;charset=utf-8' }));
+      const downloadLink = document.createElement('a');
+      downloadLink.href = calendarUrl;
+      downloadLink.download = 'Gaurav-and-Snehill-Wedding.ics';
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      downloadLink.remove();
+      setTimeout(() => URL.revokeObjectURL(calendarUrl), 60000);
+      copyHashtagStatus.textContent = 'Calendar invite downloaded. Open it to add the wedding.';
     });
 
     function waitForImage(image) {
