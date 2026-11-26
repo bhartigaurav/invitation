@@ -1068,6 +1068,60 @@
       }
     }
   
+    .welcome-screen {
+      display: none;
+    }
+
+    @media (max-width: 599px) {
+      .welcome-screen.is-visible {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: #241a16;
+      }
+
+      .welcome-video {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .welcome-enter {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 1;
+        min-height: 3.5rem;
+        padding: 0.85rem 1.6rem;
+        transform: translate(-50%, -50%);
+        border: 1px solid rgba(134, 56, 28, 0.24);
+        border-radius: 999px;
+        background: linear-gradient(135deg, #b85d3b, #86381c);
+        box-shadow: 0 10px 24px rgba(134, 56, 28, 0.32);
+        color: #fffaf4;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .welcome-enter[hidden] {
+        display: none !important;
+      }
+
+      .welcome-enter:focus-visible {
+        outline: 3px solid #de6b24;
+        outline-offset: 4px;
+      }
+    }
+
     .missing-key-notice {
       display: none;
     }
@@ -1139,6 +1193,13 @@
       <p id="preloader-status" class="preloader-status" role="status" aria-live="polite" aria-atomic="true" hidden></p>
       <button id="preloader-continue" class="preloader-continue" type="button" hidden>Continue without artwork</button>
     </div>
+  </div>
+
+  <div id="welcome-screen" class="welcome-screen" role="dialog" aria-modal="true" aria-label="Wedding invitation welcome video">
+    <video id="welcome-video" class="welcome-video" autoplay muted playsinline webkit-playsinline preload="auto" poster="../../assets/logo.png" aria-label="Gaurav and Snehill wedding invitation video">
+      <source src="../../assets/into-video.mp4" type="video/mp4" />
+    </video>
+    <button id="welcome-enter" class="welcome-enter" type="button" hidden>Aaiye Shamil Hote Hain</button>
   </div>
 
   <main class="mobile-shell">
@@ -1363,6 +1424,9 @@
     const preloader = document.getElementById('invite-preloader');
     const preloaderStatus = document.getElementById('preloader-status');
     const preloaderContinue = document.getElementById('preloader-continue');
+    const welcomeScreen = document.getElementById('welcome-screen');
+    const welcomeEnter = document.getElementById('welcome-enter');
+    const welcomeVideo = document.getElementById('welcome-video');
     const backgroundMusic = document.getElementById('background-music');
     const audioToggle = document.getElementById('audio-toggle');
     const audioStatus = document.getElementById('audio-status');
@@ -1424,9 +1488,28 @@
 
     function dismissPreloader() {
       preloader.classList.add('is-done');
-      document.body.classList.remove('artwork-loading');
-      startBackgroundMusic();
+      if (!window.matchMedia('(max-width: 599px)').matches) {
+        document.body.classList.remove('artwork-loading');
+        return;
+      }
+      welcomeScreen.classList.add('is-visible');
+      welcomeVideo.currentTime = 0;
+      playWelcomeVideo();
     }
+
+    function playWelcomeVideo() {
+      welcomeVideo.defaultMuted = true;
+      welcomeVideo.muted = true;
+      welcomeVideo.play().catch(showWelcomeButton);
+    }
+
+    function showWelcomeButton() {
+      welcomeEnter.hidden = false;
+      welcomeEnter.focus({ preventScroll: true });
+    }
+
+    welcomeVideo.addEventListener('ended', showWelcomeButton, { once: true });
+    welcomeVideo.addEventListener('error', showWelcomeButton, { once: true });
 
     preloaderContinue.addEventListener('click', dismissPreloader);
 
@@ -1547,7 +1630,6 @@
     async function startBackgroundMusic() {
       if (!backgroundMusic.paused || musicPlayPending) return;
 
-      backgroundMusic.volume = 0.8;
       musicPlayPending = true;
       try {
         await backgroundMusic.play();
@@ -1562,6 +1644,13 @@
         musicPlayPending = false;
       }
     }
+
+    welcomeEnter.addEventListener('click', () => {
+      startBackgroundMusic();
+      welcomeVideo.pause();
+      welcomeScreen.classList.remove('is-visible');
+      document.body.classList.remove('artwork-loading');
+    });
 
     backgroundMusic.addEventListener('play', () => updateAudioControl(true));
     backgroundMusic.addEventListener('pause', () => updateAudioControl(false));
